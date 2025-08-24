@@ -1,22 +1,32 @@
+---
+import Header from "@/components/Header.astro";
+import "../styles/global.css";
+import Footer from "@/components/Footer.astro";
+import MouseMoveEffect from "@/components/MouseMoveEffect.vue";
+import FloatingNavigation from "@/components/FloatingNavigation.astro";
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Cincit 2025</title>
+  </head>
+  <body class="dark:bg-gray-950">
+    <!-- <Header /> -->
+    <slot />
+    <FloatingNavigation />
+    <Footer />
+    <MouseMoveEffect client:idle />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+  }
 </style>
