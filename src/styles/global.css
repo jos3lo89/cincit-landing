@@ -1,1 +1,110 @@
 @import "tailwindcss";
+
+:root {
+  --gradient-primary: linear-gradient(
+    135deg,
+    hsl(220 100% 65%) 0%,
+    hsl(200, 52%, 32%) 100%
+  );
+
+  --gradient-secondary: linear-gradient(
+    135deg,
+    hsl(240 100% 70%) 0%,
+    hsl(220, 56%, 41%) 100%
+  );
+
+  --gradient-card: linear-gradient(
+    135deg,
+    hsl(220 25% 10% / 0.8) 0%,
+    hsl(220 20% 15% / 0.9) 100%
+  );
+}
+
+@layer components {
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-fade-in-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  .animate-fade-in-right {
+    animation: fadeInRight 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+}
+
+/* animaciones */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px hsl(220 100% 65% / 0.3);
+  }
+  to {
+    box-shadow: 0 0 40px hsl(220 100% 65% / 0.6);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
