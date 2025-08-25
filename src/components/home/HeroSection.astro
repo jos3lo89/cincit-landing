@@ -1,9 +1,13 @@
 ---
+import { Clock } from "@lucide/astro";
 import Container from "../Container.astro";
 import CountdownTimer from "../CountdownTimer.vue";
+import Timer from "../Timer.vue";
+import MatrixText from "../MatrixText.vue";
 import SocialIcons from "../SocialIcons.astro";
 import Colorizer from "../ui/Colorizer.astro";
 import Robot from "../ui/Robot.astro";
+import EventCountdown from "../EventCountdown.vue";
 ---
 
 <Colorizer />
@@ -14,9 +18,9 @@ import Robot from "../ui/Robot.astro";
     >
       <div class="space-y-4">
         <h1
-          class="text-gray-300 text-balance font-bold text-5xl md:text-6xl xl:text-7xl"
+          class="text-5xl md:text-6xl xl:text-7xl drop-shadow-xs drop-shadow-cyan-500/50"
         >
-          CINCIT
+          <MatrixText client:visible />
         </h1>
         <div class="space-y-2 text-center lg:text-left">
           <h2 class="text-2xl md:text-3xl lg:text-5xl font-bold leading-tight">
@@ -24,18 +28,24 @@ import Robot from "../ui/Robot.astro";
             <span class="text-gradient">Internacional</span>
             <br />
             <span class="text-white/70"> de </span>
-            <span class="text-gradient-secondary">Informática</span>
+            <span class="text-gradient">Informática</span>
             <span class="text-white/70"> y </span>
-            <span class="text-gradient-secondary">Sistemas</span>
+            <span class="text-gradient">Sistemas</span>
           </h2>
         </div>
         <p class="text-gray-500">
-          Únete al evento de los expertos más destacados en Inteligencia
-          Artificial y avances tecnológicos.
+          Participa en el evento y conoce las últimas novedades en inteligencia
+          artificial, sistemas e informática.
         </p>
-        <CountdownTimer client:load />
+        <div
+          class="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-white backdrop-blur-sm"
+        >
+          <Clock class="h-5 w-5 text-sky-400" />
+          <span>del 33 al 99 de febrero del 2025</span>
+        </div>
+        <EventCountdown client:visible />
 
-        <div class="flex flex-wrap justify-center gap-y-4 gap-x-6">
+        <div class="flex flex-wrap justify-center gap-y-4 gap-x-6 my-6">
           <a
             href="#"
             class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
