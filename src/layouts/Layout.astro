@@ -2,8 +2,9 @@
 import Header from "@/components/Header.astro";
 import "../styles/global.css";
 import Footer from "@/components/Footer.astro";
-import MouseMoveEffect from "@/components/MouseMoveEffect.vue";
+import MouseMoveEffect from "@/components/ui/MouseMoveEffect.vue";
 import FloatingNavigation from "@/components/FloatingNavigation.astro";
+import Navigation from "@/components/Navigation.astro";
 ---
 
 <!doctype html>
@@ -16,9 +17,9 @@ import FloatingNavigation from "@/components/FloatingNavigation.astro";
     <title>Cincit 2025</title>
   </head>
   <body class="dark:bg-gray-950">
-    <!-- <Header /> -->
     <slot />
-    <FloatingNavigation />
+    <!-- <FloatingNavigation /> -->
+    <Navigation />
     <!-- <Footer /> -->
     <MouseMoveEffect client:idle />
   </body>

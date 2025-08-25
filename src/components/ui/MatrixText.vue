@@ -92,7 +92,7 @@ onMounted(() => {
   background-clip: text;
   color: transparent;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  font-family: "Courier New", Courier, monospace;
+  /* font-family: "Courier New", Courier, monospace; */
   font-weight: bold;
 }
 

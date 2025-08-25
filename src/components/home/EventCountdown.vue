@@ -78,10 +78,10 @@ onUnmounted(() => {
       <div
         v-for="unitLabel in ['Días', 'Horas', 'Min', 'Seg']"
         :key="unitLabel"
-        class="p-4 text-white backdrop-blur-md bg-white/6 mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-cyan-400/50 cursor-default text-center"
+        class="p-4 text-white backdrop-blur-md bg-slate-900/95 mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-cyan-400/50 cursor-default text-center"
       >
-        <div class="text-xl font-semibold">00</div>
-        <div>{{ unitLabel }}</div>
+        <div class="text-xl font-semibold text-white/70">00</div>
+        <div class="text-white/70">{{ unitLabel }}</div>
       </div>
     </div>
   </div>
@@ -100,13 +100,13 @@ onUnmounted(() => {
         <div
           v-for="(unit, index) in timeUnits"
           :key="unit.label"
-          class="p-4 text-white backdrop-blur-md bg-white/6 mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-cyan-400/50 cursor-default text-center"
+          class="p-4 text-white backdrop-blur-md bg-slate-900/95 mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-400/50 cursor-default text-center"
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
-          <div class="text-xl font-semibold">
+          <div class="text-xl font-semibold text-white/70">
             {{ formatValue(unit.value) }}
           </div>
-          <div>{{ unit.label }}</div>
+          <div class="text-white/70">{{ unit.label }}</div>
         </div>
       </div>
     </div>

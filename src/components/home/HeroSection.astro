@@ -1,13 +1,11 @@
 ---
-import { Clock } from "@lucide/astro";
-import Container from "../Container.astro";
-import CountdownTimer from "../CountdownTimer.vue";
-import Timer from "../Timer.vue";
-import MatrixText from "../MatrixText.vue";
+import { Clock, Eye, Ticket } from "@lucide/astro";
+import MatrixText from "../ui/MatrixText.vue";
 import SocialIcons from "../SocialIcons.astro";
 import Colorizer from "../ui/Colorizer.astro";
 import Robot from "../ui/Robot.astro";
-import EventCountdown from "../EventCountdown.vue";
+import EventCountdown from "./EventCountdown.vue";
+import Container from "../ui/Container.astro";
 ---
 
 <Colorizer />
@@ -38,33 +36,41 @@ import EventCountdown from "../EventCountdown.vue";
           artificial, sistemas e informática.
         </p>
         <div
-          class="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-white backdrop-blur-sm"
+          class="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-slate-900/95 px-3 py-2 text-white backdrop-blur-sm"
         >
-          <Clock class="h-5 w-5 text-sky-400" />
+          <Clock class="h-5 w-5 text-sky-600" />
           <span>del 33 al 99 de febrero del 2025</span>
         </div>
         <EventCountdown client:visible />
 
-        <div class="flex flex-wrap justify-center gap-y-4 gap-x-6 my-6">
+        <div
+          class="flex flex-wrap items-center justify-center lg:justify-start gap-y-4 gap-x-3 my-5"
+        >
           <a
-            href="#"
-            class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
+            href="https://wa.link/u2ark6"
+            target="_blank"
+            class="inline-flex items-center gap-x-2 rounded-lg px-3 py-1
+      font-semibold text-slate-300
+      border border-slate-700 bg-slate-800/50
+      transition-all duration-300 ease-in-out
+      hover:bg-slate-700 hover:text-white hover:border-slate-600"
           >
-            <span class="relative text-base font-semibold text-white"
-              >Get started</span
-            >
+            <Ticket class="h-5 w-5" />
+            <span>Adquiere tu entrada</span>
           </a>
+
           <a
-            href="#"
-            class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-primary/10 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800 sm:w-max"
+            href="/#"
+            class="inline-flex items-center gap-x-2 rounded-lg px-3 py-1
+      font-semibold text-slate-300
+      border border-slate-700 bg-slate-800/50
+      transition-all duration-300 ease-in-out
+      hover:bg-slate-700 hover:text-white hover:border-slate-600"
           >
-            <span
-              class="relative text-base font-semibold text-primary dark:text-white"
-              >Learn more</span
-            >
+            <Eye class="h-5 w-5" />
+            <span>Estado de inscripción</span>
           </a>
         </div>
-
         <SocialIcons />
       </div>
 
