@@ -20,7 +20,7 @@ const isEventActive = ref(false);
 const isMounted = ref(false); // Para evitar "hydration mismatch" en SSR (Nuxt, Astro, etc.)
 
 // --- VARIABLES Y CONSTANTES ---
-const dateStr = "2025-08-23 16:00";
+const dateStr = "2025-08-29 16:00";
 const eventDate = new Date(`${dateStr.replace(" ", "T")}:00-05:00`).getTime();
 let timer: number | undefined; // Variable para guardar el ID del intervalo y limpiarlo después
 
@@ -88,7 +88,7 @@ const formatValue = (value: number) => value.toString().padStart(2, "0");
     </div>
   </div>
 
-  <div v-else-if="isEventActive" class="text-center lg:text-left">
+  <div v-else-if="isEventActive" class="mt-6 text-center lg:text-left">
     <h2
       class="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-500 to-cyan-700 bg-clip-text text-transparent animate-pulse"
     >
@@ -96,18 +96,18 @@ const formatValue = (value: number) => value.toString().padStart(2, "0");
     </h2>
   </div>
 
-  <div v-else>
-    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+  <div v-else class="flex items-center lg:items-start lg:justify-center">
+    <div class="grid grid-cols-4">
       <div
         v-for="(unit, index) in timeUnits"
         :key="unit.label"
-        class="p-4 rounded-xl text-center cursor-default"
+        class="p-4 text-white backdrop-blur-md bg-white/6 mx-1 rounded-lg shadow-lg"
         :style="{ animationDelay: `${index * 0.1}s` }"
       >
-        <div class="text-3xl font-bold mb-1">
+        <div class="text-xl font-semibold">
           {{ formatValue(unit.value) }}
         </div>
-        <div class="text-sm font-medium">
+        <div class="">
           {{ unit.label }}
         </div>
       </div>
