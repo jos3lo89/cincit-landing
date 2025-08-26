@@ -2,6 +2,7 @@
 import SocialIcons from "@/components/SocialIcons.astro";
 import Container from "@/components/ui/Container.astro";
 import { Mail, MapPin, Phone } from "@lucide/astro";
+
 const CONTACT_INFO = [
   { icon: Mail, text: "info@cincit.pe", type: "email" },
   { icon: Phone, text: "+51 999 888 777", type: "phone" },
@@ -15,74 +16,50 @@ const PARTNER_LOGOS = [
 ---
 
 <Container>
-  <footer
-    class="bg-gradient-to-t from-background-secondary to-background border-t border-border/20 mb-20"
-  >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="py-12 md:py-16">
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
-        >
-          <div class="space-y-4">
-            <div class="space-y-4">
-              <h3 class="text-2xl md:text-3xl font-bold text-gradient mb-6">
-                CINCIT
-              </h3>
-              <div class="space-y-3">
-                {
-                  CONTACT_INFO.map((contact, index) => (
-                    <div class="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      <contact.icon class="h-4 w-4 text-primary flex-shrink-0" />
-                      <span class="break-all">{contact.text}</span>
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
+  <footer class="border-t border-border/20 border-white/40 mb-20">
+    <div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 py-4">
+        <div class="space-y-4">
+          <h3 class="text-2xl md:text-3xl font-bold text-gradient mb-6">
+            CINCIT
+          </h3>
+          <div class="space-y-3">
+            {
+              CONTACT_INFO.map((contact) => (
+                <div class="flex text-white/70 items-center gap-3 text-sm">
+                  <contact.icon class="h-4 w-4 text-primary flex-shrink-0" />
+                  <span class="break-all ">{contact.text}</span>
+                </div>
+              ))
+            }
           </div>
+        </div>
 
-          <div class="md:col-span-2 lg:col-span-1">
-            <div class="flex flex-col items-center space-y-4">
-              <div class="flex flex-wrap justify-center items-center gap-6">
-                {
-                  PARTNER_LOGOS.map((logo) => (
-                    <div class="flex-shrink-0 hover:scale-105 transition-transform duration-300 max-w-32">
-                      <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        height={300}
-                        width={400}
-                      />
-                    </div>
-                  ))
-                }
+        <div class="flex flex-wrap justify-center items-center gap-6">
+          {
+            PARTNER_LOGOS.map((logo) => (
+              <div class="flex-shrink-0 hover:scale-105 transition-transform duration-300 max-w-32 h-auto">
+                <img src={logo.src} alt={logo.alt} />
               </div>
-            </div>
-          </div>
+            ))
+          }
         </div>
       </div>
 
-      <div class="py-6 border-t border-border/20">
+      <div
+        class="border-t border-border/20 border-white/40 flex flex-wrap justify-between items-center gap-3"
+      >
         <SocialIcons />
-      </div>
 
-      <div class="py-6 border-t border-border/20">
-        <div
-          class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left"
-        >
-          <p class="text-sm text-muted-foreground">
-            © 2025 CINCIT. Todos los derechos reservados.
-          </p>
-          <div class="flex items-center gap-2">
-            <a
-              href="https://evilain.site"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:scale-105 transition-transform"
-            >
-              {"</>"} gothangelsinner
-            </a>
-          </div>
+        <div class="text-white/70">
+          <a
+            href="https://evilain.site"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-gray-900 hover:bg-gray-800 border border-transparent rounded-lg p-1 text-sm font-medium hover:border hover:border-white/70"
+          >
+            {"</>"} gothangelsinner
+          </a>
         </div>
       </div>
     </div>
