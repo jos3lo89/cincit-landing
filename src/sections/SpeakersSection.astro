@@ -1,0 +1,140 @@
+---
+import Container from "@/components/ui/Container.astro";
+
+const showBlur = true;
+
+interface Speaker {
+  id: number;
+  name: string;
+  specialty: string;
+  topic: string;
+  time: string;
+  image: string;
+}
+const speakers: Speaker[] = [
+  {
+    id: 1,
+    name: "María González",
+    specialty: "AI/ML Engineer",
+    topic: "El Futuro de la Inteligencia Artificial en el Desarrollo Web",
+    time: "8:00 AM",
+    image: "/speaker-33.png",
+  },
+  {
+    id: 2,
+    name: "Carlos Rodríguez",
+    specialty: "DevOps Architect",
+    topic: "Microservicios y Arquitecturas Cloud-Native",
+    time: "10:00 AM",
+    image: "/speaker-33.png",
+  },
+  {
+    id: 3,
+    name: "Ana Martínez",
+    specialty: "Frontend Developer",
+    topic: "React 19: Nuevas Características y Mejores Prácticas",
+    time: "11:30 AM",
+    image: "/speaker-33.png",
+  },
+  {
+    id: 4,
+    name: "Diego Fernández",
+    specialty: "Cybersecurity Expert",
+    topic: "Seguridad en Aplicaciones Web Modernas",
+    time: "2:00 PM",
+    image: "/speaker-33.png",
+  },
+];
+---
+
+<Container>
+  <section class="py-16 px-4">
+    <div class="text-center mb-16 animate-fade-in-up">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        <span class="text-gradient">Nuestros </span>
+        <span class="text-white/80">Ponentes</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+      {
+        speakers.map((speaker) => (
+          <div
+            class:list={[
+              "speaker-card rounded-2xl overflow-hidden",
+              { "speaker-blur": showBlur },
+              { "speaker-clear": !showBlur },
+            ]}
+          >
+            <div class="flex flex-col">
+              {/* Imagen del speaker */}
+              <div class="py-2 flex-shrink-0 ">
+                <div class="speaker-image w-full h-full flex items-center justify-center">
+                  <img
+                    src={speaker.image || "/placeholder.svg"}
+                    alt={speaker.name}
+                    class="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover shadow-lg"
+                  />
+                </div>
+              </div>
+              {/* Información del speaker */}
+              <div class="p-4 text-left">
+                <h3 class="text-xl font-bold text-white/90 mb-1">
+                  {speaker.name}
+                </h3>
+                <p class="text-sm font-medium text-gradient mb-3">
+                  {speaker.specialty}
+                </p>
+                <p class="text-base text-white/80 leading-snug">
+                  {speaker.topic}
+                </p>
+                <p class="mt-4 text-xs text-white/70">
+                  <span>23/07/2025</span>
+                  <span class="mx-2">|</span>
+                  <span>{speaker.time}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Container>
+<style scoped>
+  .speaker-card {
+    cursor: default;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .speaker-card:hover {
+  }
+
+  /* Modified blur styles to only apply scale on hover, not remove blur */
+  .speaker-blur {
+    filter: blur(8px);
+    /* background: rgba(0, 0, 0, 0.301); */
+    opacity: 0.6;
+  }
+
+  .speaker-blur:hover {
+    filter: blur(8px);
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+
+  .speaker-clear {
+    filter: blur(0px);
+    opacity: 1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .speaker-clear:hover {
+    transform: scale(1.02);
+    background: rgba(0, 0, 0, 0.301);
+  }
+
+  .speaker-image {
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  }
+</style>
