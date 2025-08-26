@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import MouseMoveEffect from "@/components/ui/MouseMoveEffect.vue";
 import FloatingNavigation from "@/components/FloatingNavigation.astro";
@@ -14,6 +15,7 @@ import DarkModeBackground from "@/components/ui/DarkModeBackground.astro";
     <link rel="icon" type="image/svg+xml" href="/robot.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>Cincit 2025</title>
+    <ClientRouter />
   </head>
   <body>
     <DarkModeBackground />
