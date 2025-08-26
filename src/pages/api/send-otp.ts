@@ -1,5 +1,7 @@
 import type { APIRoute } from "astro";
 
+import { NEXT_PUBLIC_API_URL } from "astro:env/server";
+
 export const POST: APIRoute = async ({ request }) => {
   const { email } = await request.json();
 
@@ -11,7 +13,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const apiResponse = await fetch(
-      `${import.meta.env.NEXT_PUBLIC_API_URL}/api/register/send-otp`,
+      `${NEXT_PUBLIC_API_URL}/api/register/send-otp`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
