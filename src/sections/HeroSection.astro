@@ -1,11 +1,11 @@
 ---
+import EventCountdown from "@/components/EventCountdown.vue";
+import SocialIcons from "@/components/SocialIcons.astro";
+import Colorizer from "@/components/ui/Colorizer.astro";
+import Container from "@/components/ui/Container.astro";
+import MatrixText from "@/components/ui/MatrixText.vue";
+import Robot from "@/components/ui/Robot.astro";
 import { Clock, Eye, Ticket } from "@lucide/astro";
-import MatrixText from "../ui/MatrixText.vue";
-import SocialIcons from "../SocialIcons.astro";
-import Colorizer from "../ui/Colorizer.astro";
-import Robot from "../ui/Robot.astro";
-import EventCountdown from "./EventCountdown.vue";
-import Container from "../ui/Container.astro";
 ---
 
 <Colorizer />
@@ -71,13 +71,8 @@ import Container from "../ui/Container.astro";
           </a>
         </div>
         <div
-          class="flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-muted-foreground"
+          class="flex flex-wrap justify-center lg:justify-start gap-2 text-sm text-muted-foreground"
         >
-          <div class="flex items-center gap-2">
-            <div class="w-2 h-2 bg-gradient-primary rounded-full animate-glow">
-            </div>
-            <span class="text-white/70">15-17 Agosto 2025</span>
-          </div>
           <div class="flex items-center gap-2">
             <div
               class="w-2 h-2 bg-gradient-secondary rounded-full animate-glow"
