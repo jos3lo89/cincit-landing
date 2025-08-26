@@ -12,7 +12,7 @@ import Container from "../ui/Container.astro";
 <Container>
   <div class="min-h-screen">
     <div
-      class="text-center lg:text-start mx-auto grid grid-cols-1 lg:grid-cols-2 pt-16"
+      class="text-center lg:text-start mx-auto grid grid-cols-1 lg:grid-cols-2 lg:pt-16 pt-4"
     >
       <div class="space-y-4">
         <h1
@@ -31,7 +31,7 @@ import Container from "../ui/Container.astro";
             <span class="text-gradient">Sistemas</span>
           </h2>
         </div>
-        <p class="text-gray-500">
+        <p class="text-white/60">
           Participa en el evento y conoce las últimas novedades en inteligencia
           artificial, sistemas e informática.
         </p>
@@ -44,14 +44,13 @@ import Container from "../ui/Container.astro";
         <EventCountdown client:visible />
 
         <div
-          class="flex flex-wrap items-center justify-center lg:justify-start gap-y-4 gap-x-3 my-5"
+          class="flex items-center justify-center lg:justify-start gap-y-5 gap-x-3 my-6"
         >
           <a
             href="https://wa.link/u2ark6"
             target="_blank"
-            class="inline-flex items-center gap-x-2 rounded-lg px-3 py-1
-      font-semibold text-slate-300
-      border border-slate-700 bg-slate-800/50
+            class="flex items-center justify-center px-2 py-1 gap-1 rounded-lg text-slate-300
+      border border-slate-700 bg-blue-800/30
       transition-all duration-300 ease-in-out
       hover:bg-slate-700 hover:text-white hover:border-slate-600"
           >
@@ -61,8 +60,8 @@ import Container from "../ui/Container.astro";
 
           <a
             href="/#"
-            class="inline-flex items-center gap-x-2 rounded-lg px-3 py-1
-      font-semibold text-slate-300
+            class="flex items-center justify-center gap-1 rounded-lg px-3 py-1
+       text-slate-300
       border border-slate-700 bg-slate-800/50
       transition-all duration-300 ease-in-out
       hover:bg-slate-700 hover:text-white hover:border-slate-600"

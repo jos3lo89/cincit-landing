@@ -69,7 +69,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- Mostramos placeholder mientras no está hidratado -->
   <div
     v-if="!isHydrated"
     class="flex items-center justify-center lg:items-start lg:justify-start"
@@ -78,15 +77,16 @@ onUnmounted(() => {
       <div
         v-for="unitLabel in ['Días', 'Horas', 'Min', 'Seg']"
         :key="unitLabel"
-        class="p-4 text-white backdrop-blur-md bg-slate-900/95 mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-cyan-400/50 cursor-default text-center"
+        class="p-4 glass-card mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-400/50 cursor-default text-center"
       >
-        <div class="text-xl font-semibold text-white/70">00</div>
-        <div class="text-white/70">{{ unitLabel }}</div>
+        <div class="text-3xl font-bold text-gradient text-white/70 mb-1">
+          00
+        </div>
+        <div class="text-white/70 text-sm">{{ unitLabel }}</div>
       </div>
     </div>
   </div>
 
-  <!-- Contenido real después de hidratar -->
   <template v-else>
     <div v-if="isEventActive" class="mt-6 text-center lg:text-left">
       <h2 class="text-4xl font-bold">¡EVENTO EN CURSO!</h2>
@@ -100,13 +100,13 @@ onUnmounted(() => {
         <div
           v-for="(unit, index) in timeUnits"
           :key="unit.label"
-          class="p-4 text-white backdrop-blur-md bg-slate-900/95 mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-400/50 cursor-default text-center"
+          class="p-4 glass-card mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-400/50 cursor-default text-center"
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
-          <div class="text-xl font-semibold text-white/70">
+          <div class="text-3xl font-bold text-gradient text-white/70 mb-1">
             {{ formatValue(unit.value) }}
           </div>
-          <div class="text-white/70">{{ unit.label }}</div>
+          <div class="text-white/70 text-sm">{{ unit.label }}</div>
         </div>
       </div>
     </div>
