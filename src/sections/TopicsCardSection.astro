@@ -1,0 +1,127 @@
+---
+const topicCards = [
+  {
+    img: "https://i.pinimg.com/736x/28/b2/d2/28b2d2ac7710deffdf5f354fe0af71bb.jpg",
+    content:
+      "Conoce cómo las máquinas aprenden, entienden el lenguaje humano y actúan de manera inteligente, y los aspectos éticos relacionados.",
+    title: "Inteligencia Artificial",
+  },
+  {
+    img: "https://i.pinimg.com/736x/1c/61/b4/1c61b47bad18ad4971f81665a1910ff4.jpg",
+    content:
+      "Explora cómo la Ciencia de Datos transforma datos en información valiosa para decisiones estratégicas.",
+    title: "Ciencia de Datos",
+  },
+  {
+    img: "https://i.pinimg.com/736x/5d/4f/15/5d4f156a14cd72b11694f49db6e71b78.jpg",
+    content:
+      "Descubre cómo el IoT conecta objetos cotidianos a internet, optimizando procesos y fusionando lo físico con lo digital.",
+    title: "Internet de las Cosas",
+  },
+  {
+    img: "https://i.pinimg.com/736x/08/e4/4a/08e44a6ccb78c06c4319598b49a15aee.jpg",
+    content:
+      "Aprende cómo las Telecomunicaciones conectan al mundo, permitiendo la transmisión de datos y comunicaciones a escala global.",
+    title: "Telecomunicaciones",
+  },
+];
+---
+
+<section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 animate-fade-in-up">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        <span class="text-gradient"> Descurbre Temáticas actuales en </span>
+        <span class="text-white/80">Sistemas</span>
+
+        <span class="text-gradient"> e </span>
+        <span class="text-white/80">Inteligencia Artificial</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        topicCards.map((card) => (
+          <div class="card-container">
+            <div class="card rounded-2xl p-6 h-80 relative overflow-hidden">
+              <div class="card-content h-full flex flex-col justify-center items-center relative">
+                <img
+                  src={card.img}
+                  alt={card.title}
+                  class="card-image w-20 h-20 rounded-full object-cover absolute top-4 left-1/2 transform -translate-x-1/2"
+                />
+
+                <h3 class="card-title text-2xl font-bold text-gray-400 text-center absolute">
+                  {card.title}
+                </h3>
+
+                <p class="card-text text-sm text-white/70 text-center absolute bottom-6 left-4 right-4 leading-relaxed">
+                  {card.content}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style scoped>
+  .card-container {
+    perspective: 1000px;
+  }
+
+  .card {
+    /* backdrop-filter: blur(20px); */
+    /* background: rgba(255, 255, 255, 0.1); */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .card:hover {
+    backdrop-filter: blur(0px);
+    background: rgba(0, 0, 0, 0.301);
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-image {
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    /* opacity: 0; */
+    transform: translateY(20px) scale(0.8);
+  }
+
+  .card:hover .card-image {
+    /* opacity: 1; */
+    transform: translateY(-10px) scale(1.05);
+  }
+
+  .card-title {
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateY(80px);
+  }
+
+  .card:hover .card-title {
+    transform: translateY(0px);
+  }
+
+  .card-text {
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .card:hover .card-text {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  .card-content {
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .card:hover .card-content {
+    backdrop-filter: none;
+  }
+</style>

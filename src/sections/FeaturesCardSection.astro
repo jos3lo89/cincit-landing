@@ -1,0 +1,55 @@
+---
+const features = [
+  {
+    number: "+10",
+    title: "Ponencias",
+    description:
+      "Más de 10 ponencias con destacados expertos. ¡No te las pierdas!",
+  },
+  {
+    number: "+8",
+    title: "Edición",
+    description:
+      "26 años reuniendo a los mejores ponentes del mundo. ¡Únete a la celebración!",
+  },
+  {
+    number: "+15",
+    title: "Temáticas",
+    description:
+      "9 temas actuales que no querrás perderte. ¡Explora lo último en tecnología!",
+  },
+  {
+    number: "+3",
+    title: "Talleres",
+    description:
+      "3 talleres clave confirmados. ¡Desarrolla nuevas habilidades!",
+  },
+];
+---
+
+<section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {
+        features.map((feature, index) => (
+          <div
+            class="glass-card p-6 rounded-2xl hover-glow group cursor-pointer animate-fade-in-up"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <div class="w-16 h-16 rounded-xl bg-gradient-to-br p-4 mb-4 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-3xl text-white/70 font-bold">
+                {feature.number}
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold mb-3 text-white/80 group-hover:text-gradient transition-all duration-300">
+              {feature.title}
+            </h3>
+
+            <p class="text-white/70 leading-relaxed">{feature.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
