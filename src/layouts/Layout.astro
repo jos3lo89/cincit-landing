@@ -1,10 +1,9 @@
 ---
-import Header from "@/components/Header.astro";
 import "../styles/global.css";
-import Footer from "@/components/Footer.astro";
 import MouseMoveEffect from "@/components/ui/MouseMoveEffect.vue";
 import FloatingNavigation from "@/components/FloatingNavigation.astro";
-import Navigation from "@/components/Navigation.astro";
+import Footer from "@/components/Footer.astro";
+import DarkModeBackground from "@/components/ui/DarkModeBackground.astro";
 ---
 
 <!doctype html>
@@ -12,15 +11,15 @@ import Navigation from "@/components/Navigation.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/robot.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>Cincit 2025</title>
   </head>
-  <body class="dark:bg-gray-950">
+  <body>
+    <DarkModeBackground />
     <slot />
-    <!-- <FloatingNavigation /> -->
-    <Navigation />
-    <!-- <Footer /> -->
+    <Footer />
+    <FloatingNavigation />
     <MouseMoveEffect client:idle />
   </body>
 </html>
