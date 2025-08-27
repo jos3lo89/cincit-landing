@@ -1,17 +1,15 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Hourglass } from "@lucide/astro";
 ---
 
-<div>
-  <div class="text-center">
+<div class="h-screen">
+  <div class="text-center mt-20">
     <div
       class="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full text-amber-300 ring-1 ring-amber-200/70"
     >
-      <Icon
-        name="lucide:hourglass"
+      <Hourglass
         class="h-6 w-6 animate-spin"
         style={{ animationDuration: "3s" }}
-        aria-hidden="true"
       />
     </div>
 
@@ -22,7 +20,7 @@ import { Icon } from "astro-icon/components";
         Muy pronto
       </span>
     </h2>
-    <p class="mt-2 text-muted-foreground">
+    <p class="mt-2 text-white/70">
       Estamos preparando todo para compartirte el cronograma definitivo.
     </p>
   </div>

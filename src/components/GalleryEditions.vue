@@ -1,16 +1,54 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, defineProps } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
-interface Props {
-  galleryData: {
-    year: string;
-    title: string;
-    description: string;
-    images: string[];
-  }[];
-}
+// interface Props {
+//   galleryData: {
+//     year: string;
+//     title: string;
+//     description: string;
+//     images: string[];
+//   }[];
+// }
 
-const { galleryData } = defineProps<Props>();
+// const { galleryData } = defineProps<Props>();
+
+// las props se ven en html elements no me gusta XD
+
+const galleryData = [
+  {
+    year: "2025",
+    title: "Próxima Edición",
+    description:
+      "La planificación para la próxima edición de CINCIT está en marcha, prometiendo ser la más grande hasta la fecha.",
+    images: [
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
+    ],
+  },
+  {
+    year: "2024",
+    title: "Crecimiento y Consolidación",
+    description:
+      "Introdujimos nuevos talleres prácticos y contamos con la participación de ponentes internacionales.",
+    images: [
+      "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+      "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80",
+      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
+    ],
+  },
+  {
+    year: "2023",
+    title: "Nuestros Inicios",
+    description:
+      "La primera edición de CINCIT, un evento creado con la pasión de los estudiantes para la comunidad.",
+    images: [
+      "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&q=80",
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80",
+    ],
+  },
+];
 
 const isModalOpen = ref(false);
 const selectedImage = ref<string | null>(null);
@@ -72,10 +110,10 @@ onUnmounted(() => {
       >
         <div class="sticky z-20 top-40 self-start md:w-[30%] flex-shrink-0">
           <div
-            class="h-10 absolute left-0 md:left-3 w-10 rounded-full bg-slate-950 flex items-center justify-center"
+            class="h-10 absolute left-0 md:left-3 w-10 rounded-full bg-gray-700 flex items-center justify-center"
           >
             <div
-              class="h-4 w-4 rounded-full bg-slate-800 border-2 border-slate-700"
+              class="h-4 w-4 rounded-full bg-slate-800 border-2 border-slate-700/40"
             ></div>
           </div>
 
