@@ -4,12 +4,11 @@ import AboutMissionVision from "@/components/AboutMissionVision.astro";
 import ExperienceCincit from "@/components/ExperienceCincit.astro";
 import GalleryEditions from "@/components/GalleryEditions.vue";
 import Layout from "@/layouts/Layout.astro";
-import { galleryData } from "@/data/gallery.data";
 ---
 
 <Layout>
   <AboutHero />
   <AboutMissionVision />
   <ExperienceCincit />
-  <GalleryEditions client:visible galleryData={galleryData} />
+  <GalleryEditions client:visible />
 </Layout>
