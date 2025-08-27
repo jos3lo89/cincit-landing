@@ -3,6 +3,8 @@ import ComingSoon from "@/components/ComingSoon.astro";
 import ScheduleTimeline from "@/components/ScheduleTimeline.vue";
 import Layout from "@/layouts/Layout.astro";
 
+import { eventDays, scheduleData } from "@/data/timeLine.data";
+
 const show = true;
 ---
 
@@ -13,5 +15,15 @@ const show = true;
     </h2>
   </section>
 
-  {show ? <ScheduleTimeline client:load /> : <ComingSoon />}
+  {
+    show ? (
+      <ScheduleTimeline
+        client:load
+        eventDays={eventDays}
+        scheduleData={scheduleData}
+      />
+    ) : (
+      <ComingSoon />
+    )
+  }
 </Layout>

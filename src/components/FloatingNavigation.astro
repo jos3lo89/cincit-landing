@@ -1,17 +1,11 @@
 ---
-import {
-  Calendar,
-  GalleryVertical,
-  House,
-  UserPlus,
-  Users,
-} from "@lucide/astro";
+import { Calendar, House, UserPlus, Users } from "@lucide/astro";
 
 const navItems = [
   { icon: House, label: "Inicio", href: "/" },
   { icon: Calendar, label: "Ponencias", href: "/schedule" },
-  { icon: GalleryVertical, label: "Galería", href: "/gallery" },
-  { icon: Users, label: "Nosotros", href: "/#about" },
+  // { icon: GalleryVertical, label: "Galería", href: "/gallery" },
+  { icon: Users, label: "Nosotros", href: "/about" },
   { icon: UserPlus, label: "Inscríbete", href: "/register" },
 ];
 ---
@@ -23,7 +17,7 @@ const navItems = [
     id="main-nav"
     class="bg-slate-900/95 border border-slate-700/50 rounded-2xl px-1 py-1 shadow-2xl shadow-black/20"
   >
-    <div class="grid grid-cols-5 gap-1 md:gap-2 text-center">
+    <div class="grid grid-cols-4 gap-1 md:gap-2 text-center">
       {
         navItems.map((item) => {
           const Icon = item.icon;
