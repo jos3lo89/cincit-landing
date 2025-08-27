@@ -193,15 +193,12 @@ const eventDays = [
   },
 ];
 
-// Estado para la pestaña activa
 const activeTab = ref("dia1");
-
-// --- Funciones de ayuda para estilos e iconos ---
 
 const getEventTypeColor = (type: ScheduleEvent["type"]) => {
   switch (type) {
     case "ponencia":
-      return "border-primary bg-primary/5";
+      return "border-blue-500 bg-blue-500/5";
     case "talleres":
       return "border-green-500 bg-green-500/5";
     case "ceremonia":
@@ -216,7 +213,7 @@ const getEventTypeColor = (type: ScheduleEvent["type"]) => {
 const getEventIconColor = (type: ScheduleEvent["type"]) => {
   switch (type) {
     case "ponencia":
-      return "text-primary";
+      return "text-blue-500";
     case "talleres":
       return "text-green-500";
     case "ceremonia":
@@ -233,7 +230,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
   <section class="py-8 md:py-16 px-4 mb-16">
     <div class="w-full">
       <div
-        class="grid w-full grid-cols-3 max-w-4xl mx-auto mb-12 h-auto bg-card/50 p-2 rounded-xl"
+        class="grid w-full grid-cols-3 max-w-4xl mx-auto mb-12 h-auto bg-gray-900/90 p-2 rounded-xl"
       >
         <button
           v-for="(day, index) in eventDays"
@@ -242,13 +239,13 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
           :class="[
             'flex flex-col p-4 h-auto rounded-lg transition-all duration-200 cursor-pointer',
             activeTab === `dia${index + 1}`
-              ? 'bg-primary text-primary-foreground'
-              : '',
+              ? 'bg-gray-800 border border-white/20'
+              : 'border border-transparent',
           ]"
         >
-          <span class="font-bold text-base">{{ day.day }}</span>
+          <span class="font-bold text-base text-white/70">{{ day.day }}</span>
           <span
-            class="text-xs md:text-sm opacity-90 mt-1 break-words text-center"
+            class="text-xs md:text-sm opacity-90 mt-1 break-words text-center text-white/70"
             >{{ day.date }}</span
           >
         </button>
@@ -260,7 +257,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
           class="relative flex flex-col items-center gap-8 max-w-6xl mx-auto"
         >
           <div
-            class="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-border/30 hidden md:block"
+            class="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-gray-800/60 hidden md:block"
           ></div>
 
           <div
@@ -281,18 +278,15 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                     'w-full max-w-lg animate-fade-in-up',
                     getEventTypeColor(event.type),
                   ]"
-                  class="rounded-xl border p-4"
+                  class="rounded-xl border p-4 text-white/70"
                 >
                   <!-- aqui faltan los dato de los ponentes why?? -->
                   <div class="pb-3">
                     <div
                       class="flex items-center gap-2 text-sm text-muted-foreground mb-2"
                     >
-                      <!-- <Icon name="lucide:clock" class="h-4 w-4" /> -->
-                      <!-- <Clock class="h-4 w-4" /> -->
-
                       <svg
-                        class="stroke-current h-4 w-4 text-blue-500"
+                        class="stroke-current h-4 w-4"
                         fill="none"
                         strokeWidth="2"
                         viewBox="0 0 24 24"
@@ -301,12 +295,10 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                         <circle cx="12" cy="12" r="10" />
                         <polyline points="12,6 12,12 16,14" />
                       </svg>
-                      <span>{{ event.time }}</span>
-                      <!-- <Icon name="lucide:map-pin" class="h-4 w-4 ml-2" /> -->
-                      <!-- <MapPin class="h-4 w-4 ml-2" /> -->
+                      <span class="">{{ event.time }}</span>
 
                       <svg
-                        class="stroke-current h-4 w-4 text-blue-500"
+                        class="stroke-current h-4 w-4"
                         fill="none"
                         strokeWidth="2"
                         viewBox="0 0 24 24"
@@ -317,10 +309,12 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                         />
                         <circle cx="12" cy="10" r="3" />
                       </svg>
-                      <span>{{ event.location }}</span>
+                      <span class="">{{ event.location }}</span>
                     </div>
-                    <h3 class="text-lg font-bold">{{ event.title }}</h3>
-                    <p class="text-sm text-muted-foreground">
+                    <h3 class="text-lg font-bold text-white/70">
+                      {{ event.title }}
+                    </h3>
+                    <p class="text-sm">
                       {{ event.description }}
                     </p>
                   </div>
@@ -344,7 +338,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                             <!-- <Icon name="lucide:building" class="h-3 w-3" /> -->
 
                             <svg
-                              class="stroke-current h-3 w-3 text-amber-300"
+                              class="stroke-current h-3 w-3"
                               fill="none"
                               strokeWidth="2"
                               viewBox="0 0 24 24"
@@ -372,7 +366,8 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                             {{ event.speaker.specialty }}
                           </p>
                           <p>
-                            <strong>Enfoque:</strong> {{ event.speaker.topic }}
+                            <strong>Enfoque:</strong>
+                            {{ event.speaker.topic }}
                           </p>
                         </div>
                       </div>
@@ -392,12 +387,13 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                     getEventTypeColor(event.type),
                   ]"
                 >
-                  <!-- <Icon :name="getEventIconName(event.type)" :class="['h-5 w-5', getEventIconColor(event.type)]" /> -->
                   <ScheduleIcons
                     :type="event.type"
                     :class-name="getEventIconColor(event.type) + ' h-5 w-5'"
                   />
-                  <p class="text-xs font-bold mt-1 text-center leading-tight">
+                  <p
+                    class="text-xs font-bold mt-1 text-center leading-tight text-white/70"
+                  >
                     {{ event.time.split(" - ")[0] }}
                   </p>
                 </div>
@@ -415,7 +411,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                     'w-full max-w-lg animate-fade-in-up',
                     getEventTypeColor(event.type),
                   ]"
-                  class="rounded-xl border p-4"
+                  class="rounded-xl border p-4 text-white/70"
                 >
                   <!-- este es la dalo derecho creo si aqui tmaien fatl alos datos -->
                   <div class="pb-3">
@@ -423,7 +419,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                       class="flex items-center gap-2 text-sm text-muted-foreground mb-2"
                     >
                       <svg
-                        class="stroke-current h-4 w-4 text-blue-500"
+                        class="stroke-current h-4 w-4"
                         fill="none"
                         strokeWidth="2"
                         viewBox="0 0 24 24"
@@ -432,9 +428,9 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                         <circle cx="12" cy="12" r="10" />
                         <polyline points="12,6 12,12 16,14" />
                       </svg>
-                      <span>{{ event.time }}</span>
+                      <span class="">{{ event.time }}</span>
                       <svg
-                        class="stroke-current h-4 w-4 text-blue-500"
+                        class="stroke-current h-4 w-4"
                         fill="none"
                         strokeWidth="2"
                         viewBox="0 0 24 24"
@@ -445,10 +441,12 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                         />
                         <circle cx="12" cy="10" r="3" />
                       </svg>
-                      <span>{{ event.location }}</span>
+                      <span class="">{{ event.location }}</span>
                     </div>
-                    <h3 class="text-lg font-bold">{{ event.title }}</h3>
-                    <p class="text-sm text-muted-foreground">
+                    <h3 class="text-lg font-bold">
+                      {{ event.title }}
+                    </h3>
+                    <p class="text-sm">
                       {{ event.description }}
                     </p>
                   </div>
@@ -471,7 +469,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                           <div class="flex items-center gap-1">
                             <!-- <Icon name="lucide:building" class="h-3 w-3" /> -->
                             <svg
-                              class="stroke-current h-3 w-3 text-amber-300"
+                              class="stroke-current h-3 w-3"
                               fill="none"
                               strokeWidth="2"
                               viewBox="0 0 24 24"
@@ -523,14 +521,16 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                       :type="event.type"
                       :class-name="getEventIconColor(event.type) + ' h-5 w-5'"
                     />
-                    <p class="text-xs font-bold mt-1 text-center leading-tight">
+                    <p
+                      class="text-xs font-bold mt-1 text-center leading-tight text-white/70"
+                    >
                       {{ event.time.split(" - ")[0] }}
                     </p>
                   </div>
                 </div>
                 <div
                   :class="['w-full', getEventTypeColor(event.type)]"
-                  class="rounded-xl border p-4"
+                  class="rounded-xl border p-4 text-white/70"
                 >
                   <!-- datos en version mobile -->
                   <div class="pb-3">
@@ -538,7 +538,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                       class="flex items-center gap-2 text-sm text-muted-foreground mb-2"
                     >
                       <svg
-                        class="stroke-current h-4 w-4 text-blue-500"
+                        class="stroke-current h-4 w-4"
                         fill="none"
                         strokeWidth="2"
                         viewBox="0 0 24 24"
@@ -553,7 +553,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                       class="flex items-center gap-2 text-sm text-muted-foreground mb-2"
                     >
                       <svg
-                        class="stroke-current h-4 w-4 text-blue-500"
+                        class="stroke-current h-4 w-4"
                         fill="none"
                         strokeWidth="2"
                         viewBox="0 0 24 24"
