@@ -1,0 +1,389 @@
+<script setup lang="ts">
+import { ref, watch } from "vue";
+
+const props = defineProps<{ email: string }>();
+
+const formData = ref({
+  firstName: "",
+  lastName: "",
+  institution: "",
+  dni: "",
+  email: props.email,
+  telephone: "",
+  voucher: null as File | null,
+});
+const voucherFileName = ref("Haz clic para subir tu voucher");
+const isLoading = ref(false);
+const error = ref("");
+const successMessage = ref("");
+
+watch(
+  () => formData.value.voucher,
+  (newFile) => {
+    voucherFileName.value = newFile
+      ? newFile.name
+      : "Haz clic para subir tu voucher";
+  }
+);
+
+const handleFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  if (target.files && target.files[0]) {
+    formData.value.voucher = target.files[0];
+  }
+};
+
+const onSubmit = async () => {
+  isLoading.value = true;
+  error.value = "";
+  successMessage.value = "";
+
+  if (!formData.value.voucher) {
+    error.value = "Por favor, sube tu voucher de pago.";
+    isLoading.value = false;
+    return;
+  }
+
+  const submissionData = new FormData();
+  Object.entries(formData.value).forEach(([key, value]) => {
+    if (value !== null) {
+      submissionData.append(key, value);
+    }
+  });
+
+  try {
+    const response = await fetch("/api/register-user", {
+      method: "POST",
+      body: submissionData,
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.error || "Ocurrió un error en el registro.");
+    }
+    successMessage.value = result.message;
+    // Opcional: Redirigir después de un tiempo
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 4000);
+  } catch (err: any) {
+    error.value = err.message;
+  } finally {
+    isLoading.value = false;
+  }
+};
+</script>
+
+<template>
+  <section class="px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto">
+      <div class="p-6 md:p-8 rounded-2xl border border-white/5">
+        <form
+          v-if="!successMessage"
+          @submit.prevent="onSubmit"
+          class="space-y-6 text-white/70"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label
+                for="firstName"
+                class="text-sm font-medium flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Nombres *
+              </label>
+              <input
+                v-model="formData.firstName"
+                id="firstName"
+                type="text"
+                placeholder="Ingresa tus nombres"
+                required
+                class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="lastName"
+                class="text-sm font-medium flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Apellidos *
+              </label>
+              <input
+                v-model="formData.lastName"
+                id="lastName"
+                type="text"
+                placeholder="Ingresa tus apellidos"
+                required
+                class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label
+                for="institution"
+                class="text-sm font-medium flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4"
+                >
+                  <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                  <line x1="9" y1="22" x2="9" y2="4"></line>
+                  <line x1="15" y1="22" x2="15" y2="4"></line>
+                  <line x1="2" y1="20" x2="22" y2="20"></line>
+                </svg>
+                Institución / Universidad *
+              </label>
+              <input
+                v-model="formData.institution"
+                id="institution"
+                type="text"
+                placeholder="Nombre de tu institución"
+                required
+                class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="dni"
+                class="text-sm font-medium flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="M6 10h4m-4 4h4m4-4h4"></path>
+                </svg>
+                DNI *
+              </label>
+              <input
+                v-model="formData.dni"
+                id="dni"
+                type="number"
+                placeholder="Ingresa tu DNI"
+                required
+                class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
+              />
+            </div>
+          </div>
+
+          <!-- Email y Teléfono -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label
+                for="email"
+                class="text-sm font-medium flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                Correo Electrónico *
+              </label>
+              <input
+                id="email"
+                type="email"
+                :value="formData.email"
+                readonly
+                class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 opacity-70 cursor-not-allowed"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="telephone"
+                class="text-sm font-medium flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+                Teléfono *
+              </label>
+              <input
+                v-model="formData.telephone"
+                id="telephone"
+                type="number"
+                placeholder="Ingresa tu teléfono"
+                required
+                class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
+              />
+            </div>
+          </div>
+
+          <!-- Subida de Voucher -->
+          <div class="space-y-2">
+            <label
+              for="voucher"
+              class="text-sm font-medium text-white/80 flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-4 h-4"
+              >
+                <path
+                  d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                ></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              Voucher de Pago *
+            </label>
+            <label
+              for="voucher"
+              class="border-2 border-dashed border-primary/30 rounded-lg p-6 text-center hover:border-primary/50 transition-colors cursor-pointer block"
+            >
+              <input
+                id="voucher"
+                type="file"
+                accept="image/*"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mx-auto text-primary mb-2 h-8 w-8"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <p class="text-white/70">{{ voucherFileName }}</p>
+              <p class="text-sm text-white/50 mt-1">
+                PNG, JPG, WEBP (máx. 5MB)
+              </p>
+            </label>
+          </div>
+
+          <!-- Mensaje de Error -->
+          <div
+            v-if="error"
+            class="bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-lg p-3"
+          >
+            {{ error }}
+          </div>
+
+          <!-- Botón de Envío -->
+          <button
+            type="submit"
+            :disabled="isLoading"
+            class="w-full flex justify-center bg-blue-800 hover:bg-blue-900 cursor-pointer disabled:cursor-default items-center font-bold py-3 px-4 rounded-lg hover:opacity-90 transition-all duration-300 disabled:opacity-50"
+          >
+            <span v-if="!isLoading">Completar Registro</span>
+            <svg
+              v-else
+              class="animate-spin h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Mensaje de Éxito -->
+        <div v-if="successMessage" class="text-center animate-fade-in-up">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-16 w-16 text-green-400 mx-auto mb-4"
+          >
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          <h3 class="text-2xl font-bold text-green-400">¡Registro Exitoso!</h3>
+          <p class="text-white/80 mt-2">{{ successMessage }}</p>
+          <p class="text-sm text-white/60 mt-4">
+            Serás redirigido en unos segundos...
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
