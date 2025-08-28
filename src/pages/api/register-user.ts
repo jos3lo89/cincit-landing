@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { NEXT_PUBLIC_API_URL } from "astro:env/server";
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   try {
@@ -21,9 +22,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }
 
     const res = await fetch(
-      `${
-        import.meta.env.NEXT_PUBLIC_API_URL
-      }/api/register/create-user/with-image`,
+      `${NEXT_PUBLIC_API_URL}/api/register/create-user/with-image`,
       {
         method: "POST",
         headers: {

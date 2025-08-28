@@ -5,8 +5,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 import vue from "@astrojs/vue";
 
-import icon from "astro-icon";
-
 import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
@@ -16,17 +14,17 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [vue(), icon()],
+  integrations: [vue()],
 
   env: {
     schema: {
       NEXT_PUBLIC_API_URL: envField.string({
-        context: "client",
+        context: "server",
         access: "public",
       }),
       JWT_SECRET: envField.string({
         context: "server",
-        access: "public",
+        access: "secret",
       }),
     },
   },

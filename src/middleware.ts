@@ -1,7 +1,8 @@
 import { defineMiddleware } from "astro:middleware";
+import { JWT_SECRET } from "astro:env/server";
 import * as jose from "jose";
 
-const JWT_SECRET = new TextEncoder().encode(import.meta.env.JWT_SECRET);
+const jwtSecret = new TextEncoder().encode(JWT_SECRET);
 
 export const onRequest = defineMiddleware(async (context, next) => {
   if (context.url.pathname.startsWith("/complete-register")) {
@@ -12,7 +13,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     }
 
     try {
-      const { payload } = await jose.jwtVerify(token, JWT_SECRET);
+      const { payload } = await jose.jwtVerify(token, jwtSecret);
 
       if (typeof payload.email !== "string") {
         throw new Error("El token no contiene un email válido.");
