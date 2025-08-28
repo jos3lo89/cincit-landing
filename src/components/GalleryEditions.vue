@@ -90,7 +90,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="w-full font-sans md:px-10">
+  <div class="w-full md:px-10">
     <div class="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
       <h2 class="text-3xl md:text-5xl mb-4 text-white/70 max-w-4xl font-bold">
         Nuestra

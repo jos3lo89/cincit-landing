@@ -1,7 +1,20 @@
 ---
+import Container from "@/components/ui/Container.astro";
+import VerificationForm from "@/components/forms/VerificationForm.vue";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout>
-  <h1>register</h1>
+  <Container>
+    <div class="h-screen">
+      <div class="text-center">
+        <h2 class="text-3xl md:text-5xl mb-4 text-white/70 font-bold">
+          Confirma tu
+          <span class="text-gradient"> Participación</span>
+        </h2>
+      </div>
+
+      <VerificationForm client:idle />
+    </div>
+  </Container>
 </Layout>
