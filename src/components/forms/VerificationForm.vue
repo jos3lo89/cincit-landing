@@ -156,8 +156,8 @@ const handleBackToEmail = () => {
             v-model="otp"
             id="otp"
             type="text"
-            maxlength="4"
-            pattern="\d{4}"
+            maxlength="6"
+            pattern="\d{6}"
             required
             placeholder=""
             class="w-full text-center text-white/70 text-3xl tracking-[1em] px-4 py-3 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-white/70 transition"

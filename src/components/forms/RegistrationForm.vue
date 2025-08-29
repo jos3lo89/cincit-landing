@@ -1,9 +1,39 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { z, ZodError } from "zod";
 
 const props = defineProps<{ email: string }>();
 
-const formData = ref({
+const MAX_FILE_SIZE_MB = 5;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
+
+const registerUserSchema = z.object({
+  firstName: z.string().min(1, "El nombre es requerido."),
+  lastName: z.string().min(1, "El apellido es requerido."),
+  institution: z.string().min(1, "La institución es requerida."),
+  dni: z.string().regex(/^\d{8}$/, "El DNI debe tener 8 dígitos."),
+  email: z.string().email("Correo electrónico no válido."),
+  telephone: z.string().regex(/^\d{9}$/, "El teléfono debe tener 9 dígitos."),
+  voucher: z
+    .instanceof(File, { message: "El voucher es requerido." })
+    .refine((file) => file.size > 0, "El voucher no puede estar vacío.")
+    .refine(
+      (file) => file.size <= MAX_FILE_SIZE_BYTES,
+      `El tamaño máximo del archivo es de ${MAX_FILE_SIZE_MB}MB.`
+    )
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
+      "Solo se permiten formatos .jpeg, .jpg, .png y .webp."
+    ),
+});
+
+const formValues = ref({
   firstName: "",
   lastName: "",
   institution: "",
@@ -12,13 +42,15 @@ const formData = ref({
   telephone: "",
   voucher: null as File | null,
 });
+
 const voucherFileName = ref("Haz clic para subir tu voucher");
 const isLoading = ref(false);
 const error = ref("");
+const zodServerErrors = ref<string[] | null>(null);
 const successMessage = ref("");
 
 watch(
-  () => formData.value.voucher,
+  () => formValues.value.voucher,
   (newFile) => {
     voucherFileName.value = newFile
       ? newFile.name
@@ -29,44 +61,58 @@ watch(
 const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   if (target.files && target.files[0]) {
-    formData.value.voucher = target.files[0];
+    formValues.value.voucher = target.files[0];
   }
 };
 
 const onSubmit = async () => {
   isLoading.value = true;
   error.value = "";
+  zodServerErrors.value = null;
   successMessage.value = "";
 
-  if (!formData.value.voucher) {
+  if (!formValues.value.voucher) {
     error.value = "Por favor, sube tu voucher de pago.";
     isLoading.value = false;
     return;
   }
 
-  const submissionData = new FormData();
-  Object.entries(formData.value).forEach(([key, value]) => {
+  const formData = new FormData();
+
+  Object.entries(formValues.value).forEach(([key, value]) => {
     if (value !== null) {
-      submissionData.append(key, value);
+      formData.append(key, value);
     }
   });
 
   try {
-    const response = await fetch("/api/register-user", {
+    registerUserSchema.parse(Object.fromEntries(formData.entries()));
+
+    const res = await fetch("/api/register-user", {
       method: "POST",
-      body: submissionData,
+      body: formData,
     });
-    const result = await response.json();
-    if (!response.ok) {
+
+    const result = await res.json();
+
+    if (!res.ok) {
       throw new Error(result.error || "Ocurrió un error en el registro.");
     }
     successMessage.value = result.message;
-    // Opcional: Redirigir después de un tiempo
     setTimeout(() => {
       window.location.href = "/";
     }, 4000);
-  } catch (err: any) {
-    error.value = err.message;
+  } catch (err) {
+    if (err instanceof ZodError) {
+      zodServerErrors.value = err.errors.map((e) => e.message);
+      return;
+    }
+
+    if (err instanceof Error) {
+      error.value = err.message;
+    }
+
+    console.error("Fatal erro frontend.", err);
   } finally {
     isLoading.value = false;
   }
@@ -104,7 +150,7 @@ const onSubmit = async () => {
                 Nombres *
               </label>
               <input
-                v-model="formData.firstName"
+                v-model="formValues.firstName"
                 id="firstName"
                 type="text"
                 placeholder="Ingresa tus nombres"
@@ -133,7 +179,7 @@ const onSubmit = async () => {
                 Apellidos *
               </label>
               <input
-                v-model="formData.lastName"
+                v-model="formValues.lastName"
                 id="lastName"
                 type="text"
                 placeholder="Ingresa tus apellidos"
@@ -167,7 +213,7 @@ const onSubmit = async () => {
                 Institución / Universidad *
               </label>
               <input
-                v-model="formData.institution"
+                v-model="formValues.institution"
                 id="institution"
                 type="text"
                 placeholder="Nombre de tu institución"
@@ -196,7 +242,7 @@ const onSubmit = async () => {
                 DNI *
               </label>
               <input
-                v-model="formData.dni"
+                v-model="formValues.dni"
                 id="dni"
                 type="number"
                 placeholder="Ingresa tu DNI"
@@ -206,7 +252,6 @@ const onSubmit = async () => {
             </div>
           </div>
 
-          <!-- Email y Teléfono -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-2">
               <label
@@ -231,7 +276,7 @@ const onSubmit = async () => {
               <input
                 id="email"
                 type="email"
-                :value="formData.email"
+                :value="formValues.email"
                 readonly
                 class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 opacity-70 cursor-not-allowed"
               />
@@ -258,7 +303,7 @@ const onSubmit = async () => {
                 Teléfono *
               </label>
               <input
-                v-model="formData.telephone"
+                v-model="formValues.telephone"
                 id="telephone"
                 type="number"
                 placeholder="Ingresa tu teléfono"
@@ -268,7 +313,6 @@ const onSubmit = async () => {
             </div>
           </div>
 
-          <!-- Subida de Voucher -->
           <div class="space-y-2">
             <label
               for="voucher"
@@ -323,7 +367,20 @@ const onSubmit = async () => {
             </label>
           </div>
 
-          <!-- Mensaje de Error -->
+          <div
+            v-if="zodServerErrors"
+            class="bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-lg p-4"
+          >
+            <p class="font-medium mb-2">
+              Por favor, corrige los siguientes errores:
+            </p>
+            <ul class="list-disc list-inside space-y-1">
+              <li v-for="(m, i) in zodServerErrors" :key="i">
+                {{ m }}
+              </li>
+            </ul>
+          </div>
+
           <div
             v-if="error"
             class="bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-lg p-3"
@@ -331,7 +388,6 @@ const onSubmit = async () => {
             {{ error }}
           </div>
 
-          <!-- Botón de Envío -->
           <button
             type="submit"
             :disabled="isLoading"
@@ -362,7 +418,6 @@ const onSubmit = async () => {
           </button>
         </form>
 
-        <!-- Mensaje de Éxito -->
         <div v-if="successMessage" class="text-center animate-fade-in-up">
           <svg
             xmlns="http://www.w3.org/2000/svg"

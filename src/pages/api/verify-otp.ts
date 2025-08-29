@@ -1,10 +1,14 @@
 import type { APIRoute } from "astro";
-import { NEXT_PUBLIC_API_URL } from "astro:env/server";
+import {
+  NEXT_PUBLIC_API_URL,
+  NODE_ENV,
+  REGISTER_COOKIE_NAME,
+} from "astro:env/server";
 
 export const POST: APIRoute = async ({ request, cookies }) => {
-  const { email, code } = await request.json();
+  const { email, code: otp } = await request.json();
 
-  if (!email || !code) {
+  if (!email || !otp) {
     return new Response(JSON.stringify({ error: "Faltan datos requeridos." }), {
       status: 400,
     });
@@ -16,7 +20,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, code }),
+        body: JSON.stringify({ email, otp }),
       }
     );
 
@@ -34,11 +38,11 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     // --- ¡Magia! Aquí creamos la cookie segura ---
     const { token } = data;
     if (token) {
-      cookies.set("registration_token", token, {
+      cookies.set(REGISTER_COOKIE_NAME, token, {
         httpOnly: true,
-        secure: import.meta.env.PROD, // true en producción
+        secure: NODE_ENV === "production",
         path: "/",
-        maxAge: 900, // 15 minutos, igual que en Next.js
+        maxAge: 900,
         sameSite: "strict",
       });
     }

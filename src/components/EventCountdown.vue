@@ -89,7 +89,9 @@ onUnmounted(() => {
 
   <template v-else>
     <div v-if="isEventActive" class="mt-6 text-center lg:text-left">
-      <h2 class="text-4xl font-bold">¡EVENTO EN CURSO!</h2>
+      <h2 class="text-4xl font-bold text-white/70 animate-pulse">
+        ¡EVENTO EN CURSO!
+      </h2>
     </div>
 
     <div
