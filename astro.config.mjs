@@ -26,6 +26,15 @@ export default defineConfig({
         context: "server",
         access: "secret",
       }),
+      REGISTER_COOKIE_NAME: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+
+      NODE_ENV: envField.string({
+        context: "server",
+        access: "secret",
+      }),
     },
   },
 

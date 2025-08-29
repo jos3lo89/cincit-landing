@@ -1,12 +1,12 @@
 import { defineMiddleware } from "astro:middleware";
-import { JWT_SECRET } from "astro:env/server";
+import { JWT_SECRET, REGISTER_COOKIE_NAME } from "astro:env/server";
 import * as jose from "jose";
 
 const jwtSecret = new TextEncoder().encode(JWT_SECRET);
 
 export const onRequest = defineMiddleware(async (context, next) => {
   if (context.url.pathname.startsWith("/complete-register")) {
-    const token = context.cookies.get("registration_token")?.value;
+    const token = context.cookies.get(REGISTER_COOKIE_NAME)?.value;
 
     if (!token) {
       return context.redirect("/register");
@@ -22,7 +22,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       context.locals.email = payload.email;
     } catch (error) {
       console.error("Error de token:", error);
-      context.cookies.delete("registration_token", { path: "/" });
+      context.cookies.delete(REGISTER_COOKIE_NAME, { path: "/" });
       return context.redirect("/register");
     }
   }
