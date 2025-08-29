@@ -145,7 +145,7 @@ const handleBackToEmail = () => {
       <div class="text-center">
         <h2 class="text-2xl font-bold text-white/90">Verificar Código</h2>
         <p class="text-sm text-white/70 mt-2">
-          Ingresa el código de 4 dígitos enviado a
+          Ingresa el código de 6 dígitos enviado a
           <span class="font-bold text-primary">{{ email }}</span>
         </p>
       </div>
