@@ -78,6 +78,7 @@
   .hover-glow {
     transition: var(--transition-smooth);
   }
+
   .hover-glow:hover {
     box-shadow: var(--glow-primary);
     transform: translateY(-2px);

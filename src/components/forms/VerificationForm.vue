@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+const STORAGE_KEY = "verificationProgress";
 
 // Estado reactivo del componente
 const step = ref<"email" | "otp">("email");
@@ -7,6 +8,25 @@ const email = ref("");
 const otp = ref("");
 const isLoading = ref(false);
 const error = ref("");
+// 2. Hook onMounted para restaurar el estado cuando el componente se carga
+// Esto se ejecuta solo en el navegador, que es donde existe localStorage.
+onMounted(() => {
+  const savedProgress = localStorage.getItem(STORAGE_KEY);
+  if (savedProgress) {
+    try {
+      const { savedEmail, savedStep } = JSON.parse(savedProgress);
+      // Si el estado guardado era el paso del OTP, lo restauramos
+      if (savedStep === "otp" && savedEmail) {
+        email.value = savedEmail;
+        step.value = savedStep;
+      }
+    } catch (e) {
+      console.error("Error al parsear el estado guardado:", e);
+      // Si hay un error con los datos guardados, los limpiamos.
+      localStorage.removeItem(STORAGE_KEY);
+    }
+  }
+});
 
 // Función para enviar el email
 const onEmailSubmit = async () => {
@@ -23,6 +43,9 @@ const onEmailSubmit = async () => {
       throw new Error(result.error || "Ocurrió un error.");
     }
     step.value = "otp";
+    // 3. Guardar el progreso en Local Storage
+    const progressToSave = { savedEmail: email.value, savedStep: "otp" };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progressToSave));
   } catch (err: any) {
     error.value = err.message;
   } finally {
@@ -45,6 +68,8 @@ const onOtpSubmit = async () => {
       throw new Error(result.error || "Ocurrió un error.");
     }
     // Redirige al usuario a la página de registro final
+    // 4. Limpiar Local Storage al completar el proceso con éxito
+    localStorage.removeItem(STORAGE_KEY);
     window.location.href = "/complete-register";
   } catch (err: any) {
     error.value = err.message;
@@ -55,23 +80,30 @@ const onOtpSubmit = async () => {
 
 // Función para volver al paso del email
 const handleBackToEmail = () => {
+  // 5. Limpiar Local Storage al volver atrás
+  localStorage.removeItem(STORAGE_KEY);
   step.value = "email";
   error.value = "";
   otp.value = "";
 };
+
+const scrollToVisible = (event: FocusEvent) => {
+  const target = event.currentTarget as HTMLElement;
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
+};
 </script>
 
 <template>
-  <div class="flex items-center justify-center p-4">
+  <div class="flex items-center justify-center">
     <div
       v-if="step === 'email'"
-      class="w-full max-w-md border border-slate-700 rounded-2xl p-6 md:p-8 bg-slate-900/50"
+      class="w-full max-w-md p-2 md:p-4 bg-slate-900/50"
     >
       <div class="text-center">
         <h2 class="text-2xl font-bold text-gradient mb-4">
           Primero verifica tu correo
         </h2>
-        <div class="p-4 rounded-xl text-left border-white/5 bg-gray-800/40">
+        <div class="p-2 rounded-xl text-left border-white/5 bg-gray-800/40">
           <h4 class="font-semibold text-white/90 mb-2">
             Pasos para registrarse:
           </h4>
@@ -96,9 +128,11 @@ const handleBackToEmail = () => {
             v-model="email"
             id="email"
             type="email"
+            name="email"
             placeholder="tu-correo@ejemplo.com"
             required
-            class="w-full text-white/70 px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
+            @focus="scrollToVisible"
+            class="w-full text-white/70 px-2 py-1 rounded-lg bg-slate-800/60 border border-slate-700 transition"
           />
         </div>
         <div
@@ -110,7 +144,7 @@ const handleBackToEmail = () => {
         <button
           type="submit"
           :disabled="isLoading"
-          class="w-full flex justify-center items-center font-bold py-3 px-4 rounded-lg bg-blue-800 text-white/70 cursor-pointer hover:bg-blue-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-default"
+          class="w-full flex justify-center items-center py-1 px-2 rounded-lg bg-blue-800 text-white/70 cursor-pointer hover:bg-blue-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-default"
         >
           <span v-if="!isLoading">Enviar Código</span>
           <svg
@@ -138,10 +172,7 @@ const handleBackToEmail = () => {
       </form>
     </div>
 
-    <div
-      v-else
-      class="w-full max-w-md border border-slate-700 rounded-2xl p-6 md:p-8 bg-slate-900/50"
-    >
+    <div v-else class="w-full max-w-md p-2 md:p-4 bg-slate-900/50">
       <div class="text-center">
         <h2 class="text-2xl font-bold text-white/90">Verificar Código</h2>
         <p class="text-sm text-white/70 mt-2">
@@ -159,8 +190,9 @@ const handleBackToEmail = () => {
             maxlength="6"
             pattern="\d{6}"
             required
+            @focus="scrollToVisible"
             placeholder=""
-            class="w-full text-center text-white/70 text-3xl tracking-[1em] px-4 py-3 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-white/70 transition"
+            class="w-full text-center text-white/70 tracking-[1em] px-2 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-white/70 transition"
           />
         </div>
         <div
@@ -173,7 +205,7 @@ const handleBackToEmail = () => {
           <button
             type="submit"
             :disabled="isLoading"
-            class="w-full flex justify-center items-center font-bold py-3 px-4 rounded-lg text-white/70 bg-blue-800 hover:bg-blue-900 transition-all duration-300 disabled:opacity-50"
+            class="w-full flex justify-center items-center py-1 px-2 rounded-lg text-white/70 bg-blue-800 hover:bg-blue-900 transition-all duration-300 disabled:opacity-50"
           >
             <span v-if="!isLoading">Verificar Código</span>
             <svg
@@ -201,7 +233,7 @@ const handleBackToEmail = () => {
           <button
             type="button"
             @click="handleBackToEmail"
-            class="w-full font-bold py-3 px-4 rounded-lg bg-transparent text-white/70 hover:bg-slate-800/50 border border-slate-700 transition-colors"
+            class="w-full py-1 px-2 rounded-lg bg-transparent text-white/70 hover:bg-slate-800/50 border border-slate-700 transition-colors"
           >
             Cambiar Email
           </button>

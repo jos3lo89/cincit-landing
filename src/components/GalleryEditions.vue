@@ -161,7 +161,7 @@ onUnmounted(() => {
   <div
     v-if="isModalOpen"
     @click="closeModal"
-    class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in-up"
+    class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
   >
     <div @click.stop class="relative">
       <img

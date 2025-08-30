@@ -117,16 +117,20 @@ const onSubmit = async () => {
     isLoading.value = false;
   }
 };
+const scrollToVisible = (event: FocusEvent) => {
+  const target = event.currentTarget as HTMLElement;
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
+};
 </script>
 
 <template>
-  <section class="px-4 sm:px-6 lg:px-8">
+  <section class="sm:px-6">
     <div class="max-w-2xl mx-auto">
-      <div class="p-6 md:p-8 rounded-2xl border border-white/5">
+      <div>
         <form
           v-if="!successMessage"
           @submit.prevent="onSubmit"
-          class="space-y-6 text-white/70"
+          class="space-y-3 text-white/70"
         >
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-2">
@@ -154,6 +158,7 @@ const onSubmit = async () => {
                 id="firstName"
                 type="text"
                 placeholder="Ingresa tus nombres"
+                @focus="scrollToVisible"
                 required
                 class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
               />
@@ -183,6 +188,7 @@ const onSubmit = async () => {
                 id="lastName"
                 type="text"
                 placeholder="Ingresa tus apellidos"
+                @focus="scrollToVisible"
                 required
                 class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
               />
@@ -218,6 +224,7 @@ const onSubmit = async () => {
                 type="text"
                 placeholder="Nombre de tu institución"
                 required
+                @focus="scrollToVisible"
                 class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
               />
             </div>
@@ -247,6 +254,7 @@ const onSubmit = async () => {
                 type="number"
                 placeholder="Ingresa tu DNI"
                 required
+                @focus="scrollToVisible"
                 class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
               />
             </div>
@@ -308,7 +316,8 @@ const onSubmit = async () => {
                 type="number"
                 placeholder="Ingresa tu teléfono"
                 required
-                class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
+                @focus="scrollToVisible"
+                class="w-full px-2 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
               />
             </div>
           </div>
@@ -391,7 +400,7 @@ const onSubmit = async () => {
           <button
             type="submit"
             :disabled="isLoading"
-            class="w-full flex justify-center bg-blue-800 hover:bg-blue-900 cursor-pointer disabled:cursor-default items-center font-bold py-3 px-4 rounded-lg hover:opacity-90 transition-all duration-300 disabled:opacity-50"
+            class="w-full flex justify-center bg-blue-800 hover:bg-blue-900 cursor-pointer disabled:cursor-default items-center py-2 px-2 rounded-lg hover:opacity-90 transition-all duration-300 disabled:opacity-50"
           >
             <span v-if="!isLoading">Completar Registro</span>
             <svg
