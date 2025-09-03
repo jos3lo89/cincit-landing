@@ -17,7 +17,7 @@ const calculateTimeLeft = (distance: number) => {
 const formatValue = (value: number) => value.toString().padStart(2, "0");
 
 // --- CONFIGURACIÓN ---
-const dateStr = "2025-08-31 16:00";
+const dateStr = "2025-09-10 16:00";
 const eventDate = new Date(`${dateStr.replace(" ", "T")}:00-05:00`).getTime();
 let timer: number | undefined;
 
