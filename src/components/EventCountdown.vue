@@ -17,7 +17,7 @@ const calculateTimeLeft = (distance: number) => {
 const formatValue = (value: number) => value.toString().padStart(2, "0");
 
 // --- CONFIGURACIÓN ---
-const dateStr = "2025-08-29 16:00";
+const dateStr = "2025-08-31 16:00";
 const eventDate = new Date(`${dateStr.replace(" ", "T")}:00-05:00`).getTime();
 let timer: number | undefined;
 
@@ -77,7 +77,7 @@ onUnmounted(() => {
       <div
         v-for="unitLabel in ['Días', 'Horas', 'Min', 'Seg']"
         :key="unitLabel"
-        class="p-4 glass-card mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-400/50 cursor-default text-center"
+        class="p-4 bg-slate-800/40 mx-1 rounded-lg cursor-default text-center"
       >
         <div class="text-3xl font-bold text-gradient text-white/70 mb-1">
           00
@@ -102,7 +102,7 @@ onUnmounted(() => {
         <div
           v-for="(unit, index) in timeUnits"
           :key="unit.label"
-          class="p-4 glass-card mx-1 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-400/50 cursor-default text-center"
+          class="p-4 bg-slate-800/40 mx-1 rounded-lg cursor-default text-center"
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <div class="text-3xl font-bold text-gradient text-white/70 mb-1">
