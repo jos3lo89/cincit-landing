@@ -31,11 +31,10 @@ const topicCards = [
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-16 animate-fade-in-up">
       <h2 class="text-4xl md:text-5xl font-bold mb-6">
-        <span class="text-gradient"> Descurbre Temáticas actuales en </span>
-        <span class="text-white/80">Sistemas</span>
-
-        <span class="text-gradient"> e </span>
-        <span class="text-white/80">Inteligencia Artificial</span>
+        <span class="text-white/80">Temáticas actuales en </span>
+        <span class="text-gradient">Sistemas</span>
+        <span class="text-white/80">e</span>
+        <span class="text-gradient"> IA </span>
       </h2>
     </div>
 
@@ -44,11 +43,11 @@ const topicCards = [
         topicCards.map((card) => (
           <div class="card-container">
             <div class="card rounded-2xl p-6 h-80 relative overflow-hidden">
-              <div class="card-content h-full flex flex-col justify-center items-center relative">
+              <div class="group card-content h-full flex flex-col justify-center items-center relative">
                 <img
                   src={card.img}
                   alt={card.title}
-                  class="card-image w-20 h-20 rounded-full object-cover absolute top-4 left-1/2 transform -translate-x-1/2"
+                  class="card-image w-32 h-32 group-hover:w-20 group-hover:h-20 rounded-full object-cover absolute top-4 left-1/2 transform -translate-x-1/2"
                 />
 
                 <h3 class="card-title text-2xl font-bold text-gray-400 text-center absolute">
