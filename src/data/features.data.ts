@@ -6,21 +6,21 @@ export const features = [
       "Más de 10 ponencias con destacados expertos. ¡No te las pierdas!",
   },
   {
-    number: "+8",
+    number: "+6",
     title: "Edición",
     description:
-      "26 años reuniendo a los mejores ponentes del mundo. ¡Únete a la celebración!",
+      "6 años reuniendo a los mejores ponentes. ¡Únete a la celebración!",
   },
   {
     number: "+15",
     title: "Temáticas",
     description:
-      "9 temas actuales que no querrás perderte. ¡Explora lo último en tecnología!",
+      "15 temas actuales que no querrás perderte. ¡Explora lo último en tecnología!",
   },
   {
-    number: "+3",
+    number: "+4",
     title: "Talleres",
     description:
-      "3 talleres clave confirmados. ¡Desarrolla nuevas habilidades!",
+      "4 talleres clave confirmados. ¡Desarrolla nuevas habilidades!",
   },
 ];

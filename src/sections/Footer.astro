@@ -4,14 +4,14 @@ import Container from "@/components/ui/Container.astro";
 import { Mail, MapPin, Phone } from "@lucide/astro";
 
 const CONTACT_INFO = [
-  { icon: Mail, text: "info@cincit.pe", type: "email" },
-  { icon: Phone, text: "+51 999 888 777", type: "phone" },
+  { icon: Mail, text: "cincit@unajma.edu.pe", type: "email" },
+  { icon: Phone, text: "+51 921 340 837", type: "phone" },
   { icon: MapPin, text: "Andahuaylas, Apurimac, Perú", type: "location" },
 ];
 
 const PARTNER_LOGOS = [
   { src: "/logoepis.webp", alt: "Logo EPIS", name: "EPIS" },
-  { src: "/logounajma.webp", alt: "Logo UNAJMA", name: "UNAJMA" },
+  // { src: "/logounajma.webp", alt: "Logo UNAJMA", name: "UNAJMA" },
 ];
 ---
 
@@ -35,7 +35,7 @@ const PARTNER_LOGOS = [
           </div>
         </div>
 
-        <div class="flex flex-wrap justify-center items-center gap-6">
+        <div class="flex flex-wrap justify-end items-center gap-6">
           {
             PARTNER_LOGOS.map((logo) => (
               <div class="flex-shrink-0 hover:scale-105 transition-transform duration-300  max-w-24 lg:max-w-32 h-auto">
@@ -58,7 +58,7 @@ const PARTNER_LOGOS = [
             rel="noopener noreferrer"
             class="bg-gray-900 hover:bg-gray-800 border border-transparent rounded-lg p-1 text-sm font-medium hover:border hover:border-white/70"
           >
-            {"</>"} gothangelsinner
+            {"</>"}
           </a>
         </div>
       </div>

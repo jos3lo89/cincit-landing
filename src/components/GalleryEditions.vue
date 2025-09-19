@@ -19,11 +19,11 @@ const galleryData = [
     year: "2025",
     title: "Próxima Edición",
     description:
-      "La planificación para la próxima edición de CINCIT está en marcha, prometiendo ser la más grande hasta la fecha.",
+      "La planificación para la próxima edición de CINCIT está en marcha.",
     images: [
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
+      // "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
+      // "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
+      // "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
     ],
   },
   {
