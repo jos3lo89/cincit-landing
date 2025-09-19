@@ -334,18 +334,45 @@ const scrollToVisible = (event: FocusEvent) => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
+                  viewBox="0 0 36 36"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
+                  stroke-width="1.8"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="w-4 h-4"
+                  class="w-6 h-6"
+                  role="img"
+                  aria-hidden="false"
                 >
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                  ></path>
+                  <title>Recibo / Voucher - número</title>
+                  <!-- borde irregular como recibo -->
+                  <path d="M6 4h24v26l-3-2-3 2-3-2-3 2-3-2-3 2V4z" />
+                  <!-- líneas representando texto -->
+                  <path d="M10 10h16" />
+                  <path d="M10 14h16" />
+                  <path d="M10 18h10" />
+                  <!-- caja del número de voucher -->
+                  <rect
+                    x="22"
+                    y="20"
+                    width="8"
+                    height="6"
+                    rx="1"
+                    ry="1"
+                    fill="currentColor"
+                  />
+                  <text
+                    x="26"
+                    y="24.6"
+                    text-anchor="middle"
+                    font-size="4.2"
+                    fill="#fff"
+                    font-family="Arial, Helvetica, sans-serif"
+                  >
+                    V#
+                  </text>
                 </svg>
+
                 Némero de ticket *
               </label>
               <input
@@ -358,11 +385,11 @@ const scrollToVisible = (event: FocusEvent) => {
                 class="w-full px-2 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
               />
             </div>
-            <div>
+            <!-- <div>
               <button type="button" class="bg-indigo-500 px-2 py-2 rounded-lg">
                 Ejemplo
               </button>
-            </div>
+            </div> -->
           </div>
 
           <div class="space-y-2">
