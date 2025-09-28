@@ -20,28 +20,109 @@ const galleryData = [
     title: "Próxima Edición",
     description:
       "La planificación para la próxima edición de CINCIT está en marcha.",
-    images: [
-      "/2025/foto-1.png",
-      // "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
-      // "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
-    ],
+    images: ["/2025/foto1.webp"],
   },
   {
     year: "2024",
     title: "",
     description: "",
     images: [
-      "/2024/foto1.jpg",
-      "/2024/foto2.jpg",
-      "/2024/foto3.jpg",
-      "/2024/foto4.jpg",
+      "/2024/foto1.webp",
+      "/2024/foto2.webp",
+      "/2024/foto3.webp",
+      "/2024/foto4.webp",
+      "/2024/foto5.webp",
+      "/2024/foto6.webp",
+      "/2024/foto7.webp",
+      "/2024/foto8.webp",
     ],
   },
   {
     year: "2023",
     title: "",
     description: "",
-    images: ["/2023/foto1.jpg"],
+    images: [
+      "/2023/foto1.webp",
+      "/2023/foto2.webp",
+      "/2023/foto3.webp",
+      "/2023/foto4.webp",
+      "/2023/foto5.webp",
+      "/2023/foto6.webp",
+    ],
+  },
+
+  {
+    year: "2020",
+    title: "",
+    description: "",
+    images: [
+      "/2020/foto1.webp",
+      "/2020/foto2.webp",
+      "/2020/foto3.webp",
+      "/2020/foto4.webp",
+    ],
+  },
+
+  {
+    year: "2019",
+    title: "",
+    description: "",
+    images: [
+      "/2019/foto1.webp",
+      "/2019/foto2.webp",
+      "/2019/foto3.webp",
+      "/2019/foto4.webp",
+    ],
+  },
+  {
+    year: "2018",
+    title: "",
+    description: "",
+    images: [
+      "/2018/foto1.webp",
+      "/2018/foto2.webp",
+      "/2018/foto3.webp",
+      "/2018/foto4.webp",
+    ],
+  },
+  {
+    year: "2017",
+    title: "COMAREIS",
+    description: "Anteriormente conocidos como COMAREIS",
+    images: [
+      "/2017/foto1.webp",
+      "/2017/foto2.webp",
+      "/2017/foto3.webp",
+      "/2017/foto4.webp",
+      "/2017/foto5.webp",
+      "/2017/foto6.webp",
+    ],
+  },
+  {
+    year: "2016",
+    title: "",
+    description: "",
+    images: [
+      "/2016/foto1.webp",
+      "/2016/foto2.webp",
+      "/2016/foto3.webp",
+      "/2016/foto4.webp",
+      "/2016/foto5.webp",
+      "/2016/foto6.webp",
+    ],
+  },
+  {
+    year: "2015",
+    title: "",
+    description: "",
+    images: [
+      "/2015/foto1.webp",
+      "/2015/foto2.webp",
+      "/2015/foto3.webp",
+      "/2015/foto4.webp",
+      "/2015/foto5.webp",
+      "/2015/foto6.webp",
+    ],
   },
 ];
 
@@ -88,13 +169,12 @@ onUnmounted(() => {
   <div class="w-full md:px-10">
     <div class="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
       <h2 class="text-3xl md:text-5xl mb-4 text-white/70 max-w-4xl font-bold">
-        Nuestra
-        <span class="text-gradient"> Trayectoria </span>
+        <span class="text-gradient"> Memorias </span>
       </h2>
-      <p class="text-slate-300 text-base md:text-lg max-w-2xl">
+      <!-- <p class="text-slate-300 text-base md:text-lg max-w-2xl">
         Un vistazo a la evolución de CINCIT a través de los años, un evento que
         crece y se fortalece con cada edición.
-      </p>
+      </p> -->
     </div>
 
     <div ref="timelineRef" class="relative max-w-7xl mx-auto pb-20">
