@@ -5,11 +5,12 @@
   "scripts": {
     "start": "node dist/server/entry.mjs",
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/node": "^9.4.4",
     "@astrojs/vue": "^5.1.0",
     "@lucide/astro": "^0.541.0",
@@ -18,12 +19,12 @@
     "astro": "^5.13.3",
     "jose": "^6.1.0",
     "tailwindcss": "^4.1.12",
+    "typescript": "^5.9.3",
     "vee-validate": "^4.15.1",
     "vue": "^3.5.19",
     "zod": "^3.25.76"
   },
   "engines": {
-    "node": ">=22.11.0",
-    "pnpm": ">=9.15.9"
+    "node": ">=22.11.0"
   }
 }

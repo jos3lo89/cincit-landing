@@ -21,19 +21,22 @@ export default defineConfig({
       NEXT_PUBLIC_API_URL: envField.string({
         context: "server",
         access: "public",
+        // default: "http://localhost:4321/api",
       }),
       JWT_SECRET: envField.string({
         context: "server",
         access: "secret",
+        // default: "development-secret-change-in-production",
       }),
       REGISTER_COOKIE_NAME: envField.string({
         context: "server",
         access: "secret",
+        // default: "register_session",
       }),
-
       NODE_ENV: envField.string({
         context: "server",
         access: "secret",
+        // default: "development",
       }),
     },
   },
@@ -41,4 +44,8 @@ export default defineConfig({
   adapter: node({
     mode: "standalone",
   }),
+  server: {
+    host: true,
+    port: 5000,
+  },
 });
