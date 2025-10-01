@@ -1,0 +1,20 @@
+services:
+  app:
+    # Nombre del contenedor que se creará
+    container_name: cincit_landing_app
+
+    # Construye la imagen usando el Dockerfile en el directorio actual
+    build: .
+
+    # Mapea el puerto 5000 del contenedor al puerto 5000 de tu máquina
+    ports:
+      - "5000:5000"
+
+    # Carga las variables de entorno desde un archivo .env en la misma carpeta
+    # Este archivo NO debe ser subido a tu repositorio de GitHub
+    env_file:
+      - .env
+
+    # Política de reinicio: el contenedor se reiniciará automáticamente
+    # a menos que lo detengas manualmente.
+    restart: unless-stopped
