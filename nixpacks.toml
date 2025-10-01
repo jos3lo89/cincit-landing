@@ -1,6 +1,4 @@
-# Este archivo le indica a Dokploy (Nixpacks) cómo construir tu aplicación.
+# Nixpacks config
 
 [phases.install]
-# Anulamos el comando de instalación predeterminado (npm ci).
-# Ahora usará 'npm install' en su lugar.
 cmds = ["npm install"]
