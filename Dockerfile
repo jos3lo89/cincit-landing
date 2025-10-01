@@ -9,9 +9,8 @@ WORKDIR /app
 # Copiamos solo los archivos de manifiesto de paquetes (package.json y package-lock.json)
 COPY package*.json ./
 
-# Instalamos las dependencias usando 'npm ci', que es ideal para entornos de CI/CD
-# y utiliza el archivo package-lock.json para instalaciones consistentes.
-RUN npm ci
+# Instalamos las dependencias. Usamos 'npm install' que es más flexible que 'npm ci'.
+RUN npm install
 
 # Copiamos el resto del código fuente de la aplicación
 COPY . .
