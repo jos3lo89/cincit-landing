@@ -18,9 +18,7 @@ const registerUserSchema = z.object({
   lastName: z.string().min(1, "El apellido es requerido."),
   institution: z.string().min(1, "La institución es requerida."),
   dni: z.string().regex(/^\d{8}$/, "El DNI debe tener 8 dígitos."),
-  numTicket: z
-    .string()
-    .regex(/^\d{8}$/, "El codigo de voucher debe tener 8 dígitos."),
+  numTicket: z.string(),
   email: z.string().email("Correo electrónico no válido."),
   telephone: z.string().regex(/^\d{9}$/, "El teléfono debe tener 9 dígitos."),
   voucher: z
@@ -368,18 +366,16 @@ const scrollToVisible = (event: FocusEvent) => {
                     font-size="4.2"
                     fill="#fff"
                     font-family="Arial, Helvetica, sans-serif"
-                  >
-                    V#
-                  </text>
+                  ></text>
                 </svg>
 
-                Némero de ticket *
+                Código del voucher de pago *
               </label>
               <input
                 v-model="formValues.numTicket"
                 id="numTicket"
-                type="number"
-                placeholder="Ingresa el numero de ticket"
+                type="text"
+                placeholder="Código de operación"
                 required
                 @focus="scrollToVisible"
                 class="w-full px-2 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
