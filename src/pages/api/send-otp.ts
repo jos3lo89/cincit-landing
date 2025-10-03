@@ -24,7 +24,6 @@ export const POST: APIRoute = async ({ request }) => {
     const data = await apiResponse.json();
 
     if (!apiResponse.ok) {
-      // Reenviamos el error del backend de Next.js al frontend
       return new Response(
         JSON.stringify({ error: data.message || "Error del servidor" }),
         {
