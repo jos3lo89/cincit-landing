@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cincit.com/sitemap.xml
+Sitemap: https://cincit.com/sitemap-index.xml
