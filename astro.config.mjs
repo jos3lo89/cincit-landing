@@ -7,14 +7,17 @@ import vue from "@astrojs/vue";
 
 import node from "@astrojs/node";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
+  site: "https://cincit.com",
   output: "server",
   vite: {
     plugins: [tailwindcss()],
   },
 
-  integrations: [vue()],
+  integrations: [vue(), sitemap()],
 
   env: {
     schema: {
