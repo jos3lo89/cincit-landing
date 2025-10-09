@@ -34,7 +34,7 @@ interface Props {
 // 3. Usamos `withDefaults` para asignar los valores por defecto.
 //    Esto es totalmente compatible con TypeScript.
 const props = withDefaults(defineProps<Props>(), {
-  text: "CINCIT",
+  text: "CINCIT 2025",
   initialDelay: 350,
   letterAnimationDuration: 500,
   letterInterval: 100,
