@@ -4,14 +4,11 @@ import RegistrationForm from "@/components/forms/RegistrationForm.vue";
 import AbortRegistration from "@/components/forms/AbortRegistration.astro";
 import Container from "@/components/ui/Container.astro";
 
-// El email viene de forma segura desde el middleware
 const email = Astro.locals.email as string | undefined;
 
-// Si por alguna razón no hay email (aunque el middleware debería prevenirlo),
-// no renderizamos el formulario para evitar errores.
-// if (!email) {
-//   return Astro.redirect("/register");
-// }
+if (!email) {
+  return Astro.redirect("/register");
+}
 ---
 
 <Layout title="Completar Registro">
@@ -24,7 +21,7 @@ const email = Astro.locals.email as string | undefined;
         </h2>
       </div>
 
-      <RegistrationForm email={"jos3lo-wadafa@gmail.com"} client:load />
+      <RegistrationForm email={email} client:load />
 
       <AbortRegistration />
     </div>
