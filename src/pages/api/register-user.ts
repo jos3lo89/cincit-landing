@@ -15,6 +15,9 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }
 
     const formData = await request.formData();
+    // console.log(formData);
+
+    // return new Response(JSON.stringify({ message: "ok" }));
 
     const res = await fetch(`${NEXT_PUBLIC_API_URL}/api/register/create`, {
       method: "POST",
