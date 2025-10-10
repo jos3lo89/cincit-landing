@@ -9,9 +9,9 @@ const email = Astro.locals.email as string | undefined;
 
 // Si por alguna razón no hay email (aunque el middleware debería prevenirlo),
 // no renderizamos el formulario para evitar errores.
-if (!email) {
-  return Astro.redirect("/register");
-}
+// if (!email) {
+//   return Astro.redirect("/register");
+// }
 ---
 
 <Layout title="Completar Registro">
@@ -24,7 +24,7 @@ if (!email) {
         </h2>
       </div>
 
-      <RegistrationForm email={email} client:load />
+      <RegistrationForm email={"jos3lo-wadafa@gmail.com"} client:load />
 
       <AbortRegistration />
     </div>

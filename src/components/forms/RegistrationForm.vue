@@ -3,6 +3,7 @@ import { ref, watch } from "vue";
 import { z, ZodError } from "zod";
 
 const props = defineProps<{ email: string }>();
+const isModalOpen = ref(false);
 
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
@@ -250,6 +251,7 @@ const scrollToVisible = (event: FocusEvent) => {
                 </svg>
                 DNI *
               </label>
+
               <input
                 v-model="formValues.dni"
                 id="dni"
@@ -371,21 +373,39 @@ const scrollToVisible = (event: FocusEvent) => {
 
                 Código del voucher de pago *
               </label>
-              <input
-                v-model="formValues.numTicket"
-                id="numTicket"
-                type="text"
-                placeholder="Código de operación"
-                required
-                @focus="scrollToVisible"
-                class="w-full px-2 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
-              />
+              <div class="relative">
+                <input
+                  v-model="formValues.numTicket"
+                  id="numTicket"
+                  type="text"
+                  placeholder="Código de operación"
+                  required
+                  @focus="scrollToVisible"
+                  class="w-full px-2 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
+                />
+                <button
+                  type="button"
+                  @click="isModalOpen = true"
+                  class="absolute inset-y-0 right-0 flex items-center pr-3 text-white/50 hover:text-white/80 transition"
+                  aria-label="Ver ejemplo de voucher"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
             </div>
-            <!-- <div>
-              <button type="button" class="bg-indigo-500 px-2 py-2 rounded-lg">
-                Ejemplo
-              </button>
-            </div> -->
           </div>
 
           <div class="space-y-2">
@@ -417,7 +437,7 @@ const scrollToVisible = (event: FocusEvent) => {
               <input
                 id="voucher"
                 type="file"
-                accept="image/*"
+                accept="image/png,image/webp,image/jpg,image/jpeg"
                 class="hidden"
                 @change="handleFileChange"
               />
@@ -512,6 +532,48 @@ const scrollToVisible = (event: FocusEvent) => {
           <p class="text-sm text-white/60 mt-4">
             Serás redirigido en unos segundos...
           </p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-if="isModalOpen"
+      @click="isModalOpen = false"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm"
+    >
+      <div
+        @click.stop
+        class="bg-slate-800 border border-slate-700 rounded-lg p-6 max-w-md w-11/12 relative text-white"
+      >
+        <button
+          @click="isModalOpen = false"
+          class="absolute top-3 right-3 text-white/50 hover:text-white transition"
+          aria-label="Cerrar modal"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+
+        <h3 class="text-xl font-bold mb-4">Ejemplo de Código de Voucher</h3>
+
+        <div class="border border-slate-600 rounded-md overflow-hidden">
+          <img
+            src="/voucher-referencia.webp"
+            alt="Ejemplo de un voucher de pago señalando el código de operación"
+            class="w-full h-auto"
+          />
         </div>
       </div>
     </div>
