@@ -1,9 +1,9 @@
 ---
 import EventCountdown from "@/components/EventCountdown.vue";
+import MatrixText from "@/components/MatrixText.astro";
 import SocialIcons from "@/components/SocialIcons.astro";
 import Colorizer from "@/components/ui/Colorizer.astro";
 import Container from "@/components/ui/Container.astro";
-import MatrixText from "@/components/ui/MatrixText.vue";
 import Robot from "@/components/ui/Robot.astro";
 import { Info, Map } from "@lucide/astro";
 ---
@@ -18,7 +18,8 @@ import { Info, Map } from "@lucide/astro";
         <h1
           class="text-5xl md:text-6xl xl:text-7xl drop-shadow-xs drop-shadow-cyan-500/50"
         >
-          <MatrixText client:visible />
+          <!-- <MatrixText client:visible /> -->
+          <MatrixText />
         </h1>
         <div class="space-y-2 text-center lg:text-left">
           <h2
