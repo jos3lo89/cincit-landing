@@ -1,9 +1,9 @@
 ---
 import EventCountdown from "@/components/EventCountdown.vue";
-import MatrixText from "@/components/MatrixText.astro";
 import SocialIcons from "@/components/SocialIcons.astro";
 import Colorizer from "@/components/ui/Colorizer.astro";
 import Container from "@/components/ui/Container.astro";
+import MatrixText from "@/components/ui/MatrixText.vue";
 import Robot from "@/components/ui/Robot.astro";
 import { Info, Map } from "@lucide/astro";
 ---
@@ -18,8 +18,7 @@ import { Info, Map } from "@lucide/astro";
         <h1
           class="text-5xl md:text-6xl xl:text-7xl drop-shadow-xs drop-shadow-cyan-500/50"
         >
-          <!-- <MatrixText client:visible /> -->
-          <MatrixText />
+          <MatrixText client:visible />
         </h1>
         <div class="space-y-2 text-center lg:text-left">
           <h2
@@ -33,10 +32,6 @@ import { Info, Map } from "@lucide/astro";
             <span class="text-white/70">e innovación tecnológica</span>
           </h2>
         </div>
-        <!-- <p class="text-white/60">
-          Participa en el evento y conoce las últimas novedades en inteligencia
-          artificial, sistemas e informática.
-        </p> -->
 
         <div
           class="flex items-center justify-center lg:justify-start gap-y-5 gap-x-3 my-6"
@@ -85,41 +80,8 @@ import { Info, Map } from "@lucide/astro";
           <span class="font-medium">del 10 al 13 de noviembre del 2025</span>
         </div>
 
-        <!-- <div
-          class="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-slate-900/95 px-3 py-2 text-white backdrop-blur-sm"
-        >
-          <Clock class="h-5 w-5 text-sky-600" />
-          <span>del 11 al 14 de noviembre del 2025</span>
-        </div> -->
         <EventCountdown client:visible />
 
-        <!-- <div
-          class="flex items-center justify-center lg:justify-start gap-y-5 gap-x-3 my-6"
-        >
-          <a
-            href="#"
-            target="_blank"
-            class="flex items-center justify-center px-2 py-1 gap-1 rounded-lg text-slate-300
-      border border-slate-700 bg-gray-800/30
-      transition-all duration-300 ease-in-out
-      hover:bg-slate-700 hover:text-white hover:border-slate-600"
-          >
-            <Ticket class="h-5 w-5" />
-            <span> Inscripciones</span>
-          </a>
-
-          <a
-            href="https://wa.link/u2ark6"
-            target="_blank"
-            class="flex items-center justify-center px-2 py-1 gap-1 rounded-lg text-slate-300
-      border border-slate-700 bg-gray-800/30
-      transition-all duration-300 ease-in-out
-      hover:bg-slate-700 hover:text-white hover:border-slate-600"
-          >
-            <Ticket class="h-5 w-5" />
-            <span>Adquiere tu entrada</span>
-          </a>
-        </div> -->
         <div
           class="flex flex-wrap justify-center lg:justify-start gap-2 text-sm text-muted-foreground my-4"
         >
