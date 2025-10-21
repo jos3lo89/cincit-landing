@@ -24,6 +24,30 @@ const topicCards = [
       "Descubre el futuro de la automatización y la interacción hombre-máquina, desde la programación de sistemas autónomos hasta sus aplicaciones industriales.",
     title: "Robótica",
   },
+  {
+    img: "/software.webp",
+    content:
+      "Domina el ciclo de vida del desarrollo y las arquitecturas distribuidas, como Microfrontends, para crear soluciones de software escalables y robustas.",
+    title: "Ingeniería de Software",
+  },
+  {
+    img: "/powerbi.webp",
+    content:
+      "Utiliza Power BI para el análisis de datos y la inteligencia artificial, impulsando la competitividad y la toma de decisiones en la era digital.",
+    title: "Power BI y Analítica",
+  },
+  {
+    img: "/gestion.webp",
+    content:
+      "Aprende a liderar equipos y administrar recursos de forma eficiente, utilizando la IA para optimizar la planificación y ejecución de proyectos tecnológicos.",
+    title: "Gestión de Proyectos con IA",
+  },
+  {
+    img: "/networking.webp",
+    content:
+      "Descubre cómo las oportunidades de networking y un posgrado en el extranjero pueden transformar y acelerar tu carrera profesional en tecnología.",
+    title: "Networking y Carrera",
+  },
 ];
 ---
 
@@ -38,7 +62,7 @@ const topicCards = [
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         topicCards.map((card) => (
           <div class="card-container">
@@ -50,11 +74,11 @@ const topicCards = [
                   class="card-image w-24 h-24 lg:w-32 lg:h-32 group-hover:w-14 group-hover:h-14 lg:group-hover:w-20 lg:group-hover:h-20 rounded-full object-cover absolute top-4 left-1/2 transform -translate-x-1/2"
                 />
 
-                <h3 class="card-title text-2xl font-bold text-gray-400 text-center absolute">
+                <h3 class="card-title text-lg font-bold text-gray-400 text-center absolute">
                   {card.title}
                 </h3>
 
-                <p class="card-text text-sm lg:text-base text-white/70 text-center absolute bottom-6 left-4 right-4 leading-relaxed">
+                <p class="card-text text-sm lg:text-base text-white/70 text-center absolute bottom-4 left-4 right-4 leading-relaxed">
                   {card.content}
                 </p>
               </div>
