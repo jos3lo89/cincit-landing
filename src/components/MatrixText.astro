@@ -49,13 +49,9 @@ const {
 
       const letterSpan = letters[index] as HTMLElement;
       
-      // --- 👇 LÍNEA CORREGIDA 👇 ---
-      // Comparamos contra el texto original en lugar del HTML renderizado.
-      // Esto es más fiable para detectar el espacio.
       if (props.text[index] === ' ') {
-        return; // Ignoramos la animación para los espacios.
+        return; 
       }
-      // --- 👆 FIN DE LA CORRECCIÓN 👆 ---
 
       letterSpan.innerHTML = getRandomChar();
       letterSpan.classList.add("matrix-active");

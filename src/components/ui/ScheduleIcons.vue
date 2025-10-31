@@ -1,14 +1,11 @@
 <script setup lang="ts">
-// Define the exact string values the 'type' prop can accept
 type IconType = "ponencia" | "talleres" | "ceremonia" | "descanso";
 
-// Define the component's props using TypeScript
 interface Props {
   type: IconType;
   className?: string;
 }
 
-// Use `withDefaults` to set a default value for the optional `className` prop
 withDefaults(defineProps<Props>(), {
   className: "h-5 w-5",
 });

@@ -14,16 +14,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-// 1. [MEJORA] Definimos un tipo para el estado de cada letra.
-//    Esto hace el código más seguro y fácil de entender.
 interface LetterState {
   char: string;
   isMatrix: boolean;
   isSpace: boolean;
 }
 
-// 2. Definimos la "forma" de nuestras props con una interfaz.
-//    El `?` indica que cada propiedad es opcional.
 interface Props {
   text?: string;
   initialDelay?: number;
@@ -31,8 +27,6 @@ interface Props {
   letterInterval?: number;
 }
 
-// 3. Usamos `withDefaults` para asignar los valores por defecto.
-//    Esto es totalmente compatible con TypeScript.
 const props = withDefaults(defineProps<Props>(), {
   text: "CINCIT",
   initialDelay: 350,
@@ -40,7 +34,6 @@ const props = withDefaults(defineProps<Props>(), {
   letterInterval: 100,
 });
 
-// Usamos nuestro tipo `LetterState` para el estado reactivo.
 const letters = ref<LetterState[]>(
   props.text.split("").map((char) => ({
     char,
@@ -92,7 +85,6 @@ onMounted(() => {
   background-clip: text;
   color: transparent;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  /* font-family: "Courier New", Courier, monospace; */
   font-weight: bold;
 }
 
