@@ -37,7 +37,7 @@ const scheduleData: { [key: string]: ScheduleEvent[] } = {
       title: "Ciberseguridad",
       description: "",
       speaker: {
-        name: "DR. FELIX ELOY JIMINEZ CHUQUE",
+        name: "DR. FELIX ELOY JIMENEZ CHUQUE",
         linkedin: "https://www.linkedin.com/in/fjimenezchuque",
         website: "https://www.govtech.pe/",
         title: "",
