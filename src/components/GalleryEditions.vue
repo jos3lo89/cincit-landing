@@ -35,6 +35,9 @@ const galleryData = [
       "/2024/foto6.webp",
       "/2024/foto7.webp",
       "/2024/foto8.webp",
+      "/2024/foto9.webp",
+      "/2024/foto10.webp",
+      "/2024/foto11.webp",
     ],
   },
   {

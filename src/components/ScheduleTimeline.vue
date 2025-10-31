@@ -3,202 +3,335 @@ import { ref } from "vue";
 import type { ScheduleEvent } from "@/interfaces/timeLine.interface";
 import ScheduleIcons from "./ui/ScheduleIcons.vue";
 
-// interface Props {
-//   scheduleData: { [key: string]: ScheduleEvent[] };
-//   eventDays: {
-//     date: string;
-//     day: string;
-//   }[];
-// }
-
-// const { eventDays, scheduleData } = defineProps<Props>();
-
 const scheduleData: { [key: string]: ScheduleEvent[] } = {
   dia1: [
     {
-      time: "08:00 - 09:00",
+      time: "08:30 - 09:40",
       type: "ceremonia",
-      title: "Presentación del Evento",
+      title: "Inaguración",
       description: "Bienvenida oficial y presentación de CINCIT 2025",
       location: "Auditorio Principal",
     },
     {
-      time: "09:00 - 11:00",
+      time: "10:00 - 11:10",
       type: "ponencia",
-      title: "Fundamentos de Inteligencia Artificial en el Siglo XXI",
-      description:
-        "Una introducción comprensiva a los pilares fundamentales de la IA moderna y su impacto transformador.",
+      title: "Data Analytics e Inteligencia Artificial en Power BI",
+      description: "",
       speaker: {
-        name: "Dr. Carlos Mendoza",
-        title: "PhD en Computer Science - MIT",
-        institution: "Universidad Nacional Mayor de San Marcos",
-        orcid: "0000-0002-1234-5678",
-        specialty: "Machine Learning y Deep Learning",
-        topic:
-          "Arquitecturas neuronales avanzadas y su aplicación en problemas complejos",
-        image:
-          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-      },
-      location: "Auditorio Principal",
-    },
-    {
-      time: "11:00 - 13:00",
-      type: "ponencia",
-      title: "Procesamiento de Lenguaje Natural: Del Texto a la Comprensión",
-      description:
-        "Explorando las últimas técnicas en NLP y modelos de lenguaje como GPT y BERT.",
-      speaker: {
-        name: "Dra. Ana Fernández",
-        title: "PhD in Computational Linguistics - Stanford",
-        institution: "Pontificia Universidad Católica del Perú",
-        orcid: "0000-0003-2345-6789",
+        name: "ING. RENZO MARTIN ROCA RAMOS",
+        linkedin: "https://www.linkedin.com/in/rocarenzo/",
+        website: "https://flow.page/renzoroca",
+        title: "",
+        institution: "",
+        orcid: "",
         specialty:
-          "Procesamiento de Lenguaje Natural y Lingüística Computacional",
-        topic:
-          "Modelos transformer y su evolución hacia la comprensión contextual avanzada",
-        image:
-          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "Consultor de Proyectos de Business Intelligence, Business Analytics y Big Data",
+        topic: "",
+        image: "/ponentes/RenzoRocaRamos.webp",
       },
       location: "Auditorio Principal",
     },
     {
-      time: "14:00 - 18:00",
+      time: "11:30 - 12:40",
+      type: "ponencia",
+      title: "Ciberseguridad",
+      description: "",
+      speaker: {
+        name: "DR. FELIX ELOY JIMINEZ CHUQUE",
+        linkedin: "https://www.linkedin.com/in/fjimenezchuque",
+        website: "https://www.govtech.pe/",
+        title: "",
+        institution: "",
+        orcid: "",
+        specialty:
+          "Ciberseguridad, Gobierno Digital, Sistemas de Identificación Biométrica, Digitalización.",
+        topic: "",
+        image: "/ponentes/FelixEloyJiminezChuque.webp",
+      },
+      location: "Auditorio Principal",
+    },
+    {
+      time: "13:00 - 13:30",
+      type: "talleres",
+      title: "Horario de registro para los talleres disponibles",
+      description: "",
+      location: "",
+    },
+    {
+      time: "13:30 - 15:00",
+      type: "descanso",
+      title: "Pausa para el almuerzo y comida",
+      description: "",
+      location: "",
+    },
+    {
+      time: "15:00 - 16:30",
       type: "talleres",
       title: "Talleres Prácticos",
-      description:
-        "Sesiones hands-on con tecnologías de vanguardia en machine learning",
-      location: "Laboratorios A, B y C",
+      description: "",
+      location: "Laboratorios EPIS",
     },
   ],
   dia2: [
     {
-      time: "09:00 - 11:00",
+      time: "08:30 - 09:40",
       type: "ponencia",
-      title: "Visión por Computadora: Viendo el Mundo a Través de Algoritmos",
-      description:
-        "Técnicas avanzadas en computer vision y sus aplicaciones en la industria peruana.",
+      title: "",
+      description: "",
       speaker: {
-        name: "Dr. Roberto Silva",
-        title: "PhD in Computer Vision - Carnegie Mellon",
-        institution: "Universidad de Ingeniería y Tecnología (UTEC)",
-        orcid: "0000-0004-3456-7890",
-        specialty: "Computer Vision y Robótica",
-        topic:
-          "Sistemas de visión inteligente para automatización industrial y agricultura de precisión",
-        image:
-          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+        name: "",
+        title: "",
+        institution: "",
+        orcid: "",
+        specialty: "",
+        topic: "",
+        image: "",
+      },
+      location: "Auditorio Principal",
+    },
+
+    {
+      time: "10:00 - 11:10",
+      type: "ponencia",
+      title:
+        "Reconocimiento de cultivos agrícolas en distintas etapas de desarrollo mediante visión artificial y clasificación supervisada de imágenes Sentinel-2",
+      description: "",
+      speaker: {
+        name: "DRA. ANTONIA MACEDO CRUZ",
+        title: "",
+        website: "https://amexcomp.mx/members/view-account/371/",
+        institution: "",
+        orcid: "",
+        specialty:
+          "Hidrociencias, Teledetección, Visión Artificial aplicada a la agricultura y recursos naturales, Geomática.",
+        topic: "",
+        image: "/ponentes/AntoniaMacedoCruz.webp",
       },
       location: "Auditorio Principal",
     },
     {
-      time: "11:00 - 11:30",
-      type: "descanso",
-      title: "Coffee Break",
-      description: "Pausa para networking y refrigerio",
-      location: "Hall Principal",
-    },
-    {
-      time: "11:30 - 13:00",
+      time: "11:30 - 12:40",
       type: "ponencia",
-      title: "IA en la Medicina: Revolucionando el Diagnóstico y Tratamiento",
-      description:
-        "Aplicaciones de machine learning en imagenología médica y diagnóstico asistido.",
+      title:
+        "Oportunidades y Networking: Cómo un Posgrado en el Extranjero Transformó mi Carrera",
+      description: "",
       speaker: {
-        name: "Dra. María González",
-        title: "MD, PhD in Medical AI - Johns Hopkins",
-        institution: "Hospital Nacional Dos de Mayo",
-        orcid: "0000-0005-4567-8901",
-        specialty: "Inteligencia Artificial Médica e Imagenología",
-        topic:
-          "Algoritmos de deep learning para detección temprana de cáncer en radiografías",
-        image:
-          "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=face",
+        name: "MG. RUTH HUAMAN ALLCCAHUAMAN",
+        linkedin: "https://www.linkedin.com/in/ruth-m-huaman-a-a536b8174/",
+        title: "",
+        institution: "",
+        orcid: "",
+        specialty:
+          "Ciencias de la computación , Inteligencia de Negocios (Business Intelligence), Aprendizaje Profundo por Refuerzo.",
+        topic: "",
+        image: "/ponentes/RuthHuamanA.webp",
       },
       location: "Auditorio Principal",
     },
     {
-      time: "14:00 - 18:00",
+      time: "13:00 - 13:30",
       type: "talleres",
-      title: "Implementación Práctica de Soluciones de IA",
-      description:
-        "Talleres prácticos de implementación de algoritmos de IA en casos reales",
-      location: "Laboratorios A, B y C",
+      title: "Horario de registro para los talleres disponibles",
+      description: "",
+      location: "",
+    },
+    {
+      time: "13:30 - 15:00",
+      type: "descanso",
+      title: "Pausa para el almuerzo y comida",
+      description: "",
+      location: "",
+    },
+    {
+      time: "15:00 - 16:30",
+      type: "talleres",
+      title: "Talleres Prácticos",
+      description: "",
+      location: "Laboratorios EPIS",
     },
   ],
   dia3: [
     {
-      time: "09:00 - 11:00",
+      time: "08:30 - 09:40",
       type: "ponencia",
-      title: "Blockchain y Criptomonedas: La Revolución Descentralizada",
-      description:
-        "Fundamentos de blockchain, smart contracts y el futuro de las finanzas digitales.",
+      title:
+        "Arquitecturas distribuidas en la etapa del desarrollo de software (Mricrofrontend como solución de escalabilidad en el desarrollo frontal)",
+      description: "",
       speaker: {
-        name: "Ing. Luis Vargas",
-        title: "MSc in Blockchain Technology - ETH Zurich",
-        institution: "Banco Central de Reserva del Perú",
-        orcid: "0000-0006-5678-9012",
-        specialty: "Blockchain, DeFi y Criptoeconomía",
-        topic:
-          "Implementación de CBDCs y su impacto en el sistema financiero peruano",
-        image:
-          "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face",
+        name: "MG. KEVIN ARNOLD ARIAS FIGUEROA",
+        linkedin: "https://www.linkedin.com/in/kevin-arnold-af/",
+        website:
+          "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=301361",
+        title: "",
+        institution: "",
+        orcid: "",
+        specialty:
+          "Arquitectura de Software, Desarrollo de software empresarial, Gestión de Tecnologías de la Información.",
+        topic: "",
+        image: "/ponentes/KevinArnoldAriasFigueroa.webp",
+      },
+      location: "Auditorio Principal",
+    },
+
+    {
+      time: "10:00 - 11:10",
+      type: "ponencia",
+      title: "Como iniciar en los videojuegos",
+      description: "",
+      speaker: {
+        name: "ING. ARELIS ALEJANDRA REYES GUERRA",
+        linkedin: "https://www.linkedin.com/in/arelis-reyes/",
+        website: "https://website.beacons.ai/arelis_reyes/cv",
+        tiktok: "https://www.tiktok.com/@arelis_reyes",
+        youtube: "https://www.youtube.com/@arelis_reyes19",
+        title: "",
+        institution: "",
+        orcid: "",
+        specialty:
+          "Creadora de Contenido Digital sobre Tecnología, Programación y programación de Videojuegos.",
+        topic: "",
+        image: "/ponentes/ArelisReyes.webp",
       },
       location: "Auditorio Principal",
     },
     {
-      time: "11:00 - 11:30",
-      type: "descanso",
-      title: "Coffee Break",
-      description: "Última pausa para networking",
-      location: "Hall Principal",
-    },
-    {
-      time: "11:30 - 13:00",
+      time: "11:30 - 12:40",
       type: "ponencia",
-      title: "El Futuro de la Tecnología: Tendencias y Perspectivas 2025-2030",
-      description:
-        "Una mirada hacia las tecnologías emergentes que definirán la próxima década.",
+      title: "Dispositivo para enseñanza del alfabeto Braille a niños ciegos",
+      description: "",
       speaker: {
-        name: "Dr. Jorge Ramírez",
-        title: "PhD in Emerging Technologies - MIT",
-        institution: "Centro de Innovación Tecnológica PUCP",
-        orcid: "0000-0007-6789-0123",
-        specialty: "Tecnologías Emergentes y Prospectiva Tecnológica",
-        topic:
-          "Quantum computing, neuromorphic chips y la siguiente revolución computacional",
-        image:
-          "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=300&h=300&fit=crop&crop=face",
+        name: "DR. MANUEL JESUS IBARRA CABRERA",
+        website:
+          "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=2511",
+        title: "",
+        institution: "",
+        orcid: "",
+        specialty:
+          "Ingeniería de software, informática educativa, juegos educativos, computación móvil y sistemas colaborativos.",
+        topic: "",
+        image: "/ponentes/ManuelJesusIbarraCabrera.webp",
       },
       location: "Auditorio Principal",
     },
     {
-      time: "14:00 - 16:00",
+      time: "13:00 - 13:30",
       type: "talleres",
-      title: "Sesiones Finales de Implementación",
-      description: "Talleres de cierre y consolidación de conocimientos",
-      location: "Laboratorios A, B y C",
+      title: "Horario de registro para los talleres disponibles",
+      description: "",
+      location: "",
+    },
+    {
+      time: "13:30 - 15:00",
+      type: "descanso",
+      title: "Pausa para el almuerzo y comida",
+      description: "",
+      location: "",
+    },
+    {
+      time: "15:00 - 16:30",
+      type: "talleres",
+      title: "Talleres Prácticos",
+      description: "",
+      location: "Laboratorios EPIS",
+    },
+  ],
+  dia4: [
+    {
+      time: "08:30 - 09:40",
+      type: "ponencia",
+      title: "Power BI y analítica empresarial",
+      description: "",
+      speaker: {
+        name: "MG. JORGE ALBERTO PRADO PALOMINO",
+        website:
+          "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=56759",
+        title: "",
+        institution: "",
+        orcid: "",
+        specialty: "Administración, Finanzas, Negocios.",
+        topic: "",
+        image: "/ponentes/JorgeAlbertoPradoPalomino.webp",
+      },
+      location: "Auditorio Principal",
+    },
+
+    {
+      time: "10:00 - 11:10",
+      type: "ponencia",
+      title:
+        "Ética y sesgos en la inteligencia artificial aplicada a la industria",
+      description: "",
+      speaker: {
+        name: "ING. SHEILA STEFANY CCAHUA CHAVEZ",
+        linkedin: "https://www.linkedin.com/in/sheilastccahua/",
+        website: "https://linktr.ee/stefachav",
+        tiktok: "https://www.tiktok.com/@stefachav",
+        title: "",
+        institution: "",
+        orcid: "",
+        specialty:
+          "Data Scientist (Senior), Investigación Operativa, Desarrollo de modelos predictivos y visualización de datos.",
+        topic: "",
+        image: "/ponentes/SheylaCcachuaChavez.webp",
+      },
+      location: "Auditorio Principal",
+    },
+    {
+      time: "11:30 - 12:40",
+      type: "talleres",
+      title: "Concurso de proyectos",
+      description: "",
+      speaker: {
+        name: "",
+        title: "",
+        institution: "",
+        orcid: "",
+        specialty: "",
+        topic: "",
+        image: "",
+      },
+      location: "Auditorio Principal",
+    },
+    {
+      time: "13:00 - 13:30",
+      type: "ceremonia",
+      title: "Clausura del evento",
+      description: "",
+      location: "",
+    },
+    {
+      time: "13:30 - 15:00",
+      type: "descanso",
+      title: "Pausa para el almuerzo y comida",
+      description: "",
+      location: "",
     },
     {
       time: "16:00 - 17:00",
       type: "ceremonia",
-      title: "Ceremonia de Clausura",
-      description: "Palabras finales y entrega de certificados",
-      location: "Auditorio Principal",
+      title: "Tarde de confraternidad",
+      description: "",
+      location: "",
     },
   ],
 };
+
 const eventDays = [
   {
-    date: "15 Agosto 2025",
+    date: "10 Noviembre 2025",
     day: "Día 1",
   },
   {
-    date: "16 Agosto 2025",
+    date: "11 Noviembre 2025",
     day: "Día 2",
   },
   {
-    date: "17 Agosto 2025",
+    date: "12 Noviembre 2025",
     day: "Día 3",
+  },
+  {
+    date: "13 Noviembre 2025",
+    day: "Día 4",
   },
 ];
 
@@ -239,7 +372,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
   <section class="py-8 md:py-16 px-4 mb-16">
     <div class="w-full">
       <div
-        class="grid w-full grid-cols-3 max-w-4xl mx-auto mb-12 h-auto bg-gray-900/90 p-2 rounded-xl"
+        class="grid w-full grid-cols-4 max-w-4xl mx-auto mb-12 h-auto bg-gray-900/90 p-2 rounded-xl"
       >
         <button
           v-for="(day, index) in eventDays"
@@ -289,7 +422,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                   ]"
                   class="rounded-xl border p-4 text-white/70"
                 >
-                  <!-- aqui faltan los dato de los ponentes why?? -->
+                  <!-- izquierdo -->
                   <div class="pb-3">
                     <div
                       class="flex items-center gap-2 text-sm text-muted-foreground mb-2"
@@ -306,19 +439,24 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                       </svg>
                       <span class="">{{ event.time }}</span>
 
-                      <svg
-                        class="stroke-current h-4 w-4"
-                        fill="none"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <div
+                        v-if="event.location"
+                        class="flex justify-center items-center gap-2"
                       >
-                        <path
-                          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                        />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                      <span class="">{{ event.location }}</span>
+                        <svg
+                          class="stroke-current h-4 w-4"
+                          fill="none"
+                          strokeWidth="2"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                          />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        <span class="">{{ event.location }}</span>
+                      </div>
                     </div>
                     <h3 class="text-lg font-bold text-white/70">
                       {{ event.title }}
@@ -331,6 +469,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                   <div v-if="event.speaker" class="pt-0">
                     <div class="flex items-start gap-4 mt-4">
                       <img
+                        v-if="event.speaker.image"
                         :src="event.speaker.image || '/placeholder.svg'"
                         :alt="event.speaker.name"
                         class="w-16 h-16 rounded-full object-cover flex-shrink-0"
@@ -339,42 +478,132 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                         <p class="font-semibold text-sm text-primary mb-1">
                           {{ event.speaker.name }}
                         </p>
-                        <p class="text-xs text-muted-foreground mb-2">
+
+                        <div class="flex gap-2 justify-start items-center">
+                          <a
+                            v-if="event.speaker.linkedin"
+                            target="_blank"
+                            :href="event.speaker.linkedin"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"
+                              />
+                            </svg>
+                          </a>
+                          <a
+                            :href="event.speaker.website"
+                            target="_blank"
+                            v-if="event.speaker.website"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 48 48"
+                            >
+                              <g
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3"
+                              >
+                                <path
+                                  stroke-linejoin="round"
+                                  d="M3 24a21 21 0 1 0 42 0a21 21 0 1 0-42 0"
+                                />
+                                <path
+                                  stroke-linejoin="round"
+                                  d="M15 24a9 21 0 1 1 18 0a9 21 0 1 1-18 0"
+                                />
+                                <path
+                                  stroke-linecap="round"
+                                  d="M4.5 31h39m-39-14h39"
+                                />
+                              </g>
+                            </svg>
+                          </a>
+                          <a
+                            :href="event.speaker.tiktok"
+                            target="_blank"
+                            v-if="event.speaker.tiktok"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M16 1h-3.5v15.5c0 1.5-1.5 3-3 3s-3-.5-3-3c0-2 1.899-3.339 3.5-3V10c-6.12 0-7 5-7 6.5S3.977 23 9.5 23c4.522 0 6.5-3.5 6.5-6V8c1.146 1.018 2.922 1.357 5 1.5V6c-3.017 0-5-2.654-5-5"
+                              />
+                            </svg>
+                          </a>
+                          <a
+                            :href="event.speaker.youtube"
+                            target="_blank"
+                            v-if="event.speaker.youtube"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="m10 15l5.19-3L10 9zm11.56-7.83c.13.47.22 1.1.28 1.9c.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83c-.25.9-.83 1.48-1.73 1.73c-.47.13-1.33.22-2.65.28c-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44c-.9-.25-1.48-.83-1.73-1.73c-.13-.47-.22-1.1-.28-1.9c-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83c.25-.9.83-1.48 1.73-1.73c.47-.13 1.33-.22 2.65-.28c1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44c.9.25 1.48.83 1.73 1.73"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <p
+                          v-if="event.speaker.title"
+                          class="text-xs text-muted-foreground mb-2"
+                        >
                           {{ event.speaker.title }}
                         </p>
                         <div class="space-y-1 text-xs text-muted-foreground">
                           <div class="flex items-center gap-1">
                             <!-- <Icon name="lucide:building" class="h-3 w-3" /> -->
 
-                            <svg
-                              class="stroke-current h-3 w-3"
-                              fill="none"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"
-                              />
-                              <path d="M6 12h4" />
-                              <path d="M6 16h4" />
-                              <path d="M16 12h2" />
-                              <path d="M16 16h2" />
-                              <path d="M16 20h2" />
-                              <path d="M6 20h4" />
-                              <path d="M14 12h2" />
-                              <path d="M14 16h2" />
-                            </svg>
-                            <!-- <Building class="h-3 w-3" /> -->
-                            <span class="truncate">{{
-                              event.speaker.institution
-                            }}</span>
+                            <div v-if="event.speaker.institution">
+                              <svg
+                                class="stroke-current h-3 w-3"
+                                fill="none"
+                                strokeWidth="2"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"
+                                />
+                                <path d="M6 12h4" />
+                                <path d="M6 16h4" />
+                                <path d="M16 12h2" />
+                                <path d="M16 16h2" />
+                                <path d="M16 20h2" />
+                                <path d="M6 20h4" />
+                                <path d="M14 12h2" />
+                                <path d="M14 16h2" />
+                              </svg>
+                              <!-- <Building class="h-3 w-3" /> -->
+                              <span class="truncate">
+                                {{ event.speaker.institution }}</span
+                              >
+                            </div>
                           </div>
-                          <p>
+                          <p v-if="event.speaker.specialty">
                             <strong>Especialidad:</strong>
                             {{ event.speaker.specialty }}
                           </p>
-                          <p>
+                          <p v-if="event.speaker.topic">
                             <strong>Enfoque:</strong>
                             {{ event.speaker.topic }}
                           </p>
@@ -422,7 +651,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                   ]"
                   class="rounded-xl border p-4 text-white/70"
                 >
-                  <!-- este es la dalo derecho creo si aqui tmaien fatl alos datos -->
+                  <!--  derecho  -->
                   <div class="pb-3">
                     <div
                       class="flex items-center gap-2 text-sm text-muted-foreground mb-2"
@@ -438,19 +667,25 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                         <polyline points="12,6 12,12 16,14" />
                       </svg>
                       <span class="">{{ event.time }}</span>
-                      <svg
-                        class="stroke-current h-4 w-4"
-                        fill="none"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+
+                      <div
+                        v-if="event.location"
+                        class="flex justify-center items-center gap-2"
                       >
-                        <path
-                          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                        />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                      <span class="">{{ event.location }}</span>
+                        <svg
+                          class="stroke-current h-4 w-4"
+                          fill="none"
+                          strokeWidth="2"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                          />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        <span class="">{{ event.location }}</span>
+                      </div>
                     </div>
                     <h3 class="text-lg font-bold">
                       {{ event.title }}
@@ -463,6 +698,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                   <div v-if="event.speaker" class="pt-0">
                     <div class="flex items-start gap-4 mt-4">
                       <img
+                        v-if="event.speaker.image"
                         :src="event.speaker.image || '/placeholder.svg'"
                         :alt="event.speaker.name"
                         class="w-16 h-16 rounded-full object-cover flex-shrink-0"
@@ -471,11 +707,103 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                         <p class="font-semibold text-sm text-primary mb-1">
                           {{ event.speaker.name }}
                         </p>
-                        <p class="text-xs text-muted-foreground mb-2">
+
+                        <div class="flex gap-2 justify-start items-center">
+                          <a
+                            v-if="event.speaker.linkedin"
+                            target="_blank"
+                            :href="event.speaker.linkedin"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"
+                              />
+                            </svg>
+                          </a>
+                          <a
+                            :href="event.speaker.website"
+                            target="_blank"
+                            v-if="event.speaker.website"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 48 48"
+                            >
+                              <g
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3"
+                              >
+                                <path
+                                  stroke-linejoin="round"
+                                  d="M3 24a21 21 0 1 0 42 0a21 21 0 1 0-42 0"
+                                />
+                                <path
+                                  stroke-linejoin="round"
+                                  d="M15 24a9 21 0 1 1 18 0a9 21 0 1 1-18 0"
+                                />
+                                <path
+                                  stroke-linecap="round"
+                                  d="M4.5 31h39m-39-14h39"
+                                />
+                              </g>
+                            </svg>
+                          </a>
+                          <a
+                            :href="event.speaker.tiktok"
+                            target="_blank"
+                            v-if="event.speaker.tiktok"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M16 1h-3.5v15.5c0 1.5-1.5 3-3 3s-3-.5-3-3c0-2 1.899-3.339 3.5-3V10c-6.12 0-7 5-7 6.5S3.977 23 9.5 23c4.522 0 6.5-3.5 6.5-6V8c1.146 1.018 2.922 1.357 5 1.5V6c-3.017 0-5-2.654-5-5"
+                              />
+                            </svg>
+                          </a>
+
+                          <a
+                            :href="event.speaker.youtube"
+                            target="_blank"
+                            v-if="event.speaker.youtube"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="m10 15l5.19-3L10 9zm11.56-7.83c.13.47.22 1.1.28 1.9c.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83c-.25.9-.83 1.48-1.73 1.73c-.47.13-1.33.22-2.65.28c-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44c-.9-.25-1.48-.83-1.73-1.73c-.13-.47-.22-1.1-.28-1.9c-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83c.25-.9.83-1.48 1.73-1.73c.47-.13 1.33-.22 2.65-.28c1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44c.9.25 1.48.83 1.73 1.73"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <p
+                          v-if="event.speaker.title"
+                          class="text-xs text-muted-foreground mb-2"
+                        >
                           {{ event.speaker.title }}
                         </p>
                         <div class="space-y-1 text-xs text-muted-foreground">
-                          <div class="flex items-center gap-1">
+                          <div
+                            v-if="event.speaker.institution"
+                            class="flex items-center gap-1"
+                          >
                             <!-- <Icon name="lucide:building" class="h-3 w-3" /> -->
                             <svg
                               class="stroke-current h-3 w-3"
@@ -501,11 +829,11 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                               event.speaker.institution
                             }}</span>
                           </div>
-                          <p>
+                          <p v-if="event.speaker.specialty">
                             <strong>Especialidad:</strong>
                             {{ event.speaker.specialty }}
                           </p>
-                          <p>
+                          <p v-if="event.speaker.topic">
                             <strong>Enfoque:</strong> {{ event.speaker.topic }}
                           </p>
                         </div>
@@ -562,19 +890,24 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                     <div
                       class="flex items-center gap-2 text-sm text-muted-foreground mb-2"
                     >
-                      <svg
-                        class="stroke-current h-4 w-4"
-                        fill="none"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <div
+                        v-if="event.location"
+                        class="flex justify-center items-center gap-2"
                       >
-                        <path
-                          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                        />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                      <span>{{ event.location }}</span>
+                        <svg
+                          class="stroke-current h-4 w-4"
+                          fill="none"
+                          strokeWidth="2"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                          />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        <span>{{ event.location }}</span>
+                      </div>
                     </div>
                     <h3 class="text-lg font-bold">{{ event.title }}</h3>
                     <p class="text-sm text-muted-foreground">
@@ -593,11 +926,102 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                         <p class="font-semibold text-sm text-primary mb-1">
                           {{ event.speaker.name }}
                         </p>
-                        <p class="text-xs text-muted-foreground mb-2">
+                        <div class="flex gap-2 justify-start items-center">
+                          <a
+                            v-if="event.speaker.linkedin"
+                            target="_blank"
+                            :href="event.speaker.linkedin"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"
+                              />
+                            </svg>
+                          </a>
+                          <a
+                            :href="event.speaker.website"
+                            target="_blank"
+                            v-if="event.speaker.website"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 48 48"
+                            >
+                              <g
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3"
+                              >
+                                <path
+                                  stroke-linejoin="round"
+                                  d="M3 24a21 21 0 1 0 42 0a21 21 0 1 0-42 0"
+                                />
+                                <path
+                                  stroke-linejoin="round"
+                                  d="M15 24a9 21 0 1 1 18 0a9 21 0 1 1-18 0"
+                                />
+                                <path
+                                  stroke-linecap="round"
+                                  d="M4.5 31h39m-39-14h39"
+                                />
+                              </g>
+                            </svg>
+                          </a>
+                          <a
+                            :href="event.speaker.tiktok"
+                            target="_blank"
+                            v-if="event.speaker.tiktok"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M16 1h-3.5v15.5c0 1.5-1.5 3-3 3s-3-.5-3-3c0-2 1.899-3.339 3.5-3V10c-6.12 0-7 5-7 6.5S3.977 23 9.5 23c4.522 0 6.5-3.5 6.5-6V8c1.146 1.018 2.922 1.357 5 1.5V6c-3.017 0-5-2.654-5-5"
+                              />
+                            </svg>
+                          </a>
+
+                          <a
+                            :href="event.speaker.youtube"
+                            target="_blank"
+                            v-if="event.speaker.youtube"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="m10 15l5.19-3L10 9zm11.56-7.83c.13.47.22 1.1.28 1.9c.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83c-.25.9-.83 1.48-1.73 1.73c-.47.13-1.33.22-2.65.28c-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44c-.9-.25-1.48-.83-1.73-1.73c-.13-.47-.22-1.1-.28-1.9c-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83c.25-.9.83-1.48 1.73-1.73c.47-.13 1.33-.22 2.65-.28c1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44c.9.25 1.48.83 1.73 1.73"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <p
+                          v-if="event.speaker.title"
+                          class="text-xs text-muted-foreground mb-2"
+                        >
                           {{ event.speaker.title }}
                         </p>
                         <div class="space-y-1 text-xs text-muted-foreground">
-                          <div class="flex items-center gap-1">
+                          <div
+                            v-if="event.speaker.institution"
+                            class="flex items-center gap-1"
+                          >
                             <svg
                               class="stroke-current h-3 w-3 text-amber-300"
                               fill="none"
@@ -625,7 +1049,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                             <strong>Especialidad:</strong>
                             {{ event.speaker.specialty }}
                           </p>
-                          <p>
+                          <p v-if="event.speaker.topic">
                             <strong>Enfoque:</strong> {{ event.speaker.topic }}
                           </p>
                         </div>
