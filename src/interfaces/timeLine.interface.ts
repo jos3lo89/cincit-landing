@@ -1,12 +1,16 @@
 // Define la estructura de un ponente
 export interface Speaker {
   name: string;
-  title: string;
+  title?: string;
   image?: string;
-  institution: string;
-  orcid: string;
-  specialty: string;
-  topic: string;
+  institution?: string;
+  orcid?: string;
+  specialty?: string;
+  topic?: string;
+  linkedin?: string;
+  website?: string;
+  tiktok?: string;
+  youtube?: string;
 }
 
 // Define la estructura de un evento del cronograma
