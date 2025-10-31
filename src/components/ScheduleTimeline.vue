@@ -870,7 +870,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                   :class="['w-full', getEventTypeColor(event.type)]"
                   class="rounded-xl border p-4 text-white/70"
                 >
-                  <!-- datos en version mobile -->
+                  <!-- mobile -->
                   <div class="pb-3">
                     <div
                       class="flex items-center gap-2 text-sm text-muted-foreground mb-2"
@@ -918,6 +918,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                   <div v-if="event.speaker" class="pt-0">
                     <div class="flex items-start gap-4 mt-4">
                       <img
+                        v-if="event.speaker.image"
                         :src="event.speaker.image || '/placeholder.svg'"
                         :alt="event.speaker.name"
                         class="w-16 h-16 rounded-full object-cover flex-shrink-0"
@@ -1045,7 +1046,7 @@ const getEventIconColor = (type: ScheduleEvent["type"]) => {
                               event.speaker.institution
                             }}</span>
                           </div>
-                          <p>
+                          <p v-if="event.speaker.specialty">
                             <strong>Especialidad:</strong>
                             {{ event.speaker.specialty }}
                           </p>
