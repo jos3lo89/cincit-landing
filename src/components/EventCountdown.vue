@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, nextTick } from "vue";
 
-// --- FUNCIONES AUXILIARES ---
 const calculateTimeLeft = (distance: number) => {
   if (distance > 0) {
     return {
@@ -16,18 +15,14 @@ const calculateTimeLeft = (distance: number) => {
 
 const formatValue = (value: number) => value.toString().padStart(2, "0");
 
-// --- CONFIGURACIÓN ---
 const dateStr = "2025-11-10 08:00";
 const eventDate = new Date(`${dateStr.replace(" ", "T")}:00-05:00`).getTime();
 let timer: number | undefined;
 
-// --- ESTADO REACTIVO ---
-// Inicializamos con valores vacíos para evitar mismatches
 const timeLeft = ref({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 const isEventActive = ref(false);
-const isHydrated = ref(false); // Flag para saber cuando estamos en el cliente
+const isHydrated = ref(false);
 
-// --- PROPIEDADES COMPUTADAS ---
 const timeUnits = computed(() => [
   { label: "Días", value: timeLeft.value.days },
   { label: "Horas", value: timeLeft.value.hours },
@@ -35,9 +30,7 @@ const timeUnits = computed(() => [
   { label: "Seg", value: timeLeft.value.seconds },
 ]);
 
-// --- CICLOS DE VIDA ---
 onMounted(async () => {
-  // Esperamos al siguiente tick para asegurar que estamos completamente en el cliente
   await nextTick();
 
   const updateCountdown = () => {
@@ -51,13 +44,10 @@ onMounted(async () => {
     }
   };
 
-  // Actualizamos inmediatamente
   updateCountdown();
 
-  // Marcamos como hidratado después de la primera actualización
   isHydrated.value = true;
 
-  // Iniciamos el timer solo si el evento no ha pasado
   if (!isEventActive.value) {
     timer = window.setInterval(updateCountdown, 1000);
   }

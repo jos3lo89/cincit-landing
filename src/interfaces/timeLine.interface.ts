@@ -1,4 +1,3 @@
-// Define la estructura de un ponente
 export interface Speaker {
   name: string;
   title?: string;
@@ -13,7 +12,6 @@ export interface Speaker {
   youtube?: string;
 }
 
-// Define la estructura de un evento del cronograma
 export interface ScheduleEvent {
   time: string;
   location: string;

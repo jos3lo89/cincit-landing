@@ -2,14 +2,12 @@
 import { onMounted, ref } from "vue";
 const STORAGE_KEY = "verificationProgress";
 
-// Estado reactivo del componente
 const step = ref<"email" | "otp">("email");
 const email = ref("");
 const otp = ref("");
 const isLoading = ref(false);
 const error = ref("");
-// 2. Hook onMounted para restaurar el estado cuando el componente se carga
-// Esto se ejecuta solo en el navegador, que es donde existe localStorage.
+
 onMounted(() => {
   const savedProgress = localStorage.getItem(STORAGE_KEY);
   if (savedProgress) {
@@ -28,7 +26,6 @@ onMounted(() => {
   }
 });
 
-// Función para enviar el email
 const onEmailSubmit = async () => {
   isLoading.value = true;
   error.value = "";
@@ -53,7 +50,6 @@ const onEmailSubmit = async () => {
   }
 };
 
-// Función para verificar el OTP
 const onOtpSubmit = async () => {
   isLoading.value = true;
   error.value = "";
@@ -67,8 +63,7 @@ const onOtpSubmit = async () => {
     if (!response.ok) {
       throw new Error(result.error || "Ocurrió un error.");
     }
-    // Redirige al usuario a la página de registro final
-    // 4. Limpiar Local Storage al completar el proceso con éxito
+
     localStorage.removeItem(STORAGE_KEY);
     window.location.href = "/complete-register";
   } catch (err: any) {
@@ -78,9 +73,7 @@ const onOtpSubmit = async () => {
   }
 };
 
-// Función para volver al paso del email
 const handleBackToEmail = () => {
-  // 5. Limpiar Local Storage al volver atrás
   localStorage.removeItem(STORAGE_KEY);
   step.value = "email";
   error.value = "";
