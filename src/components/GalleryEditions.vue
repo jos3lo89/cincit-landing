@@ -20,7 +20,14 @@ const galleryData = [
     title: "Próxima Edición",
     description:
       "La planificación para la próxima edición de CINCIT está en marcha.",
-    images: ["/2025/foto1.webp"],
+    images: [
+      "/2025/foto1.webp",
+      "/2025/foto2.webp",
+      "/2025/foto3.webp",
+      "/2025/foto4.webp",
+      "/2025/foto5.webp",
+      "/2025/foto6.webp",
+    ],
   },
   {
     year: "2024",
