@@ -5,17 +5,10 @@ import Layout from "@/layouts/Layout.astro";
 import Inscription from "@/components/Inscription.astro";
 ---
 
-<Layout>
+<Layout title="Inscripciones | CINCIT 2025">
   <Container>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-6">
       <Inscription />
-
-      <!-- <div class="text-center">
-        <h2 class="text-3xl md:text-5xl mb-4 text-gradient font-bold">
-          REGISTRO
-        </h2>
-      </div> -->
-
       <VerificationForm client:idle />
     </div>
   </Container>

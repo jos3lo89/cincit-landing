@@ -1,8 +1,12 @@
+---
+import PaymentModal from "./PaymentModal.astro";
+---
+
 <div class="text-center lg:mb-4">
   <h2 class="text-3xl md:text-5xl mb-4 text-gradient font-bold mt-6">
     INSCRIPCIONES
   </h2>
-  <div class="my-3">
+  <!-- <div class="my-3">
     <div class="relative inline-flex">
       <span
         class="text-sm text-white/60 font-semibold bg-blue-700/60 px-2 py-1 rounded-lg relative z-10"
@@ -14,26 +18,35 @@
         ></span>
       </span>
     </div>
-  </div>
+  </div> -->
   <p class="text-white/70 text-lg">
     Sé parte de la sexta edición del Congreso Internacional de Computación e
     Innovación Tecnológica
   </p>
 
-  <div class="my-12 max-w-lg mx-auto">
+  <!-- <div class="my-12 max-w-lg mx-auto">
     <div
       class="h-px bg-blue-500/30 shadow-[0_0_8px_theme(colors.blue.500/0.3)]"
     >
     </div>
-  </div>
+  </div> -->
 
   <div
-    class="max-w-lg mx-auto bg-slate-900/50 border border-blue-800/40 rounded-2xl p-6 md:p-8 text-white shadow-lg shadow-blue-900/20"
+    class="max-w-lg mt-3 mx-auto bg-slate-900/50 border border-blue-800/40 rounded-2xl p-6 md:p-8 text-white shadow-lg shadow-blue-900/20"
   >
     <div class="flex flex-col md:flex-row md:items-end md:justify-between">
       <div>
         <h3 class="text-lg font-semibold text-white/80">Inscripción General</h3>
         <p class="text-4xl md:text-5xl font-bold text-white mt-1">S/ 50.00</p>
+      </div>
+      <div class="mt-4 md:mt-0">
+        <button
+          id="open-payment-modal"
+          type="button"
+          class="w-full md:w-auto py-2 px-5 rounded-lg bg-blue-800 text-white/90 cursor-pointer hover:bg-blue-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-default"
+        >
+          Ver Métodos de Pago
+        </button>
       </div>
     </div>
     <p class="text-white/70 mt-4 text-left">
@@ -145,3 +158,5 @@
     </p>
   </div>
 </div>
+
+<PaymentModal />
