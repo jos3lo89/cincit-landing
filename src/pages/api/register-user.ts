@@ -44,6 +44,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     );
   } catch (error: any) {
     console.error("Error en /api/register-user:", error);
+
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
     });

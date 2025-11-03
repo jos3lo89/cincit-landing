@@ -9,9 +9,14 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   const { email, code: otp } = await request.json();
 
   if (!email || !otp) {
-    return new Response(JSON.stringify({ error: "Faltan datos requeridos." }), {
-      status: 400,
-    });
+    return new Response(
+      JSON.stringify({
+        error: "Por favor complete todos los campos obligatorios.",
+      }),
+      {
+        status: 400,
+      }
+    );
   }
 
   try {
@@ -28,15 +33,17 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
     if (!apiResponse.ok) {
       return new Response(
-        JSON.stringify({ error: data.message || "Error del servidor" }),
+        JSON.stringify({
+          error: data.message || "Error al verificar el código.",
+        }),
         {
           status: apiResponse.status,
         }
       );
     }
 
-    // --- ¡Magia! Aquí creamos la cookie segura ---
     const { token } = data;
+
     if (token) {
       cookies.set(REGISTER_COOKIE_NAME, token, {
         httpOnly: true,
