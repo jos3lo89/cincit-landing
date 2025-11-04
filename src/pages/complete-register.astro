@@ -15,20 +15,20 @@ if (!email) {
   <Container>
     <div class="mb-20">
       <div class="text-center pt-10 mb-10 px-4">
-        <h2 class="text-3xl md:text-5xl text-white/80 font-bold">
+        <h2 class="text-2xl md:text-3xl text-white/80 font-bold">
           Formulario de <span class="text-gradient">registro</span>
         </h2>
 
-        <div
-          class="max-w-2xl mx-auto mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded-lg"
-        >
-          <p class="text-yellow-900 font-medium text-center">
-            Por favor, asegúrate de que tus datos sean correctos. <br />
-            <strong
-              >Los datos ingresados serán usados como datos oficiales para
-              generar los certificados de acreditación del CINCIT 2025.</strong
-            >
-          </p>
+        <div class="max-w-2xl mx-auto mt-6 p-4 rounded-lg animated-border">
+          <div class="bg-white rounded-lg">
+            <p class="text-black/80 font-medium text-center">
+              Por favor, asegúrate de que tus datos sean correctos. <br />
+              <strong
+                >Los datos ingresados serán usados como datos oficiales para
+                generar los certificados de acreditación del CINCIT 2025.</strong
+              >
+            </p>
+          </div>
         </div>
       </div>
 
@@ -38,3 +38,23 @@ if (!email) {
     </div>
   </Container>
 </Layout>
+
+<style>
+  @keyframes gradient-x {
+    0%,
+    100% {
+      background-size: 200% 200%;
+      background-position: left center;
+    }
+    50% {
+      background-size: 200% 200%;
+      background-position: right center;
+    }
+  }
+
+  .animated-border {
+    padding: 5px;
+    background-image: linear-gradient(to right, #fde047, #fef9c3, #fde047);
+    animation: gradient-x 3s ease-in-out infinite;
+  }
+</style>
