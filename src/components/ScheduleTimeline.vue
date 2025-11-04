@@ -76,16 +76,18 @@ const scheduleData: { [key: string]: ScheduleEvent[] } = {
     {
       time: "08:30 - 09:40",
       type: "ponencia",
-      title: "",
+      title:
+        "Creando mi primer chatbot con IA Generativa en la nube con Azure Foundry",
       description: "",
       speaker: {
-        name: "",
+        name: "ING. TONY STIVENSON TRUJILLO DAVILA",
+        linkedin: "https://www.linkedin.com/in/tonytec/",
         title: "",
         institution: "",
         orcid: "",
-        specialty: "",
+        specialty: "Data Architect and IA Architect",
         topic: "",
-        image: "",
+        image: "/ponentes/TONYSTIVENSONTRUJILLODAVILA.webp",
       },
       location: "Auditorio Principal",
     },
