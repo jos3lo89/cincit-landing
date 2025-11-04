@@ -85,7 +85,8 @@ const scheduleData: { [key: string]: ScheduleEvent[] } = {
         title: "",
         institution: "",
         orcid: "",
-        specialty: "Data Architect and IA Architect",
+        specialty:
+          "Especialista en Arquitectura de Datos y soluciones Big Data en la nube orientadas a la optimización del negocio.",
         topic: "",
         image: "/ponentes/TONYSTIVENSONTRUJILLODAVILA.webp",
       },
