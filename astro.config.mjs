@@ -37,6 +37,14 @@ export default defineConfig({
         context: "server",
         access: "secret",
       }),
+      PERUDEVS_API_KEY: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      PERUDEVS_URL: envField.string({
+        context: "server",
+        access: "secret",
+      }),
     },
   },
 
