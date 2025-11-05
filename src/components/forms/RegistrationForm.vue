@@ -3,7 +3,16 @@ import { ref, watch } from "vue";
 import { z, ZodError } from "zod";
 
 const props = defineProps<{ email: string }>();
+
 const isModalOpen = ref(false);
+const voucherFileName = ref("Haz clic para subir tu voucher");
+const isLoading = ref(false);
+const error = ref("");
+const zodServerErrors = ref<string[] | null>(null);
+const successMessage = ref("");
+const isFetchingDni = ref(false);
+const dniError = ref("");
+const areNamesLocked = ref(false);
 
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
@@ -46,21 +55,6 @@ const formValues = ref({
   voucher: null as File | null,
 });
 
-const voucherFileName = ref("Haz clic para subir tu voucher");
-const isLoading = ref(false);
-const error = ref("");
-const zodServerErrors = ref<string[] | null>(null);
-const successMessage = ref("");
-
-watch(
-  () => formValues.value.voucher,
-  (newFile) => {
-    voucherFileName.value = newFile
-      ? newFile.name
-      : "Haz clic para subir tu voucher";
-  }
-);
-
 const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   if (target.files && target.files[0]) {
@@ -101,10 +95,12 @@ const onSubmit = async () => {
     if (!res.ok) {
       throw new Error(result.error || "Ocurrió un error en el registro.");
     }
+
     successMessage.value = result.message;
+
     setTimeout(() => {
       window.location.href = "/";
-    }, 4000);
+    }, 5000);
   } catch (err) {
     if (err instanceof ZodError) {
       zodServerErrors.value = err.errors.map((e) => e.message);
@@ -115,19 +111,85 @@ const onSubmit = async () => {
       error.value = err.message;
     }
 
-    console.error("Fatal erro frontend.", err);
+    // console.error("Error: ", err);
   } finally {
     isLoading.value = false;
   }
 };
+
 const scrollToVisible = (event: FocusEvent) => {
   const target = event.currentTarget as HTMLElement;
   target.scrollIntoView({ behavior: "smooth", block: "center" });
 };
+
+const handleFetchUser = async () => {
+  const dni = formValues.value.dni;
+
+  if (dni.length !== 8 || !/^\d+$/.test(dni)) {
+    dniError.value = "El DNI debe tener 8 dígitos numéricos.";
+    return;
+  }
+
+  isFetchingDni.value = true;
+  dniError.value = "";
+  areNamesLocked.value = false;
+
+  try {
+    const res = await fetch(`/api/user/${dni}`);
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "No se pudo completar la búsqueda.");
+    }
+
+    formValues.value.firstName = data.nombres;
+    formValues.value.lastName = `${data.apellido_paterno} ${data.apellido_materno}`;
+    //no se esta usando esto
+    areNamesLocked.value = true;
+  } catch (err) {
+    if (err instanceof Error) {
+      dniError.value = err.message;
+    } else {
+      dniError.value = "Un error inesperado ocurrió.";
+    }
+    formValues.value.firstName = "";
+    formValues.value.lastName = "";
+  } finally {
+    isFetchingDni.value = false;
+  }
+};
+
+watch(
+  () => formValues.value.voucher,
+  (newFile) => {
+    voucherFileName.value = newFile
+      ? newFile.name
+      : "Haz clic para subir tu voucher";
+  }
+);
+
+watch(
+  () => formValues.value.dni,
+  () => {
+    if (areNamesLocked.value) {
+      areNamesLocked.value = false;
+      formValues.value.firstName = "";
+      formValues.value.lastName = "";
+      dniError.value = "";
+    }
+  }
+);
+
+watch(
+  () => formValues.value.dni,
+  (newValue) => {
+    formValues.value.dni = newValue.replace(/\D/g, "").slice(0, 8);
+  }
+);
 </script>
 
 <template>
-  <section class="sm:px-6">
+  <section>
     <div class="max-w-2xl mx-auto">
       <div>
         <form
@@ -135,6 +197,79 @@ const scrollToVisible = (event: FocusEvent) => {
           @submit.prevent="onSubmit"
           class="space-y-3 text-white/70"
         >
+          <div class="grid grid-cols-1 gap-6">
+            <div class="space-y-2">
+              <label
+                for="dni"
+                class="text-sm font-medium flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="M6 10h4m-4 4h4m4-4h4"></path>
+                </svg>
+                DNI *
+              </label>
+
+              <div class="flex gap-2">
+                <input
+                  v-model="formValues.dni"
+                  id="dni"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="8"
+                  pattern="[0-9]*"
+                  placeholder="Ingresa tu DNI"
+                  required
+                  @focus="scrollToVisible"
+                  @keyup.enter="handleFetchUser"
+                  class="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
+                />
+                <button
+                  type="button"
+                  @click="handleFetchUser"
+                  :disabled="isFetchingDni || formValues.dni.length !== 8"
+                  class="flex-shrink-0 flex items-center justify-center p-2 cursor-pointer rounded-lg bg-blue-800 text-sm font-medium hover:bg-blue-900 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                >
+                  <span v-if="!isFetchingDni">Buscar</span>
+                  <svg
+                    v-else
+                    class="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    ></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+
+              <p v-if="dniError" class="text-sm text-red-400 mt-1">
+                {{ dniError }}
+              </p>
+            </div>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-2">
               <label
@@ -231,40 +366,7 @@ const scrollToVisible = (event: FocusEvent) => {
                 class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
               />
             </div>
-            <div class="space-y-2">
-              <label
-                for="dni"
-                class="text-sm font-medium flex items-center gap-2"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="w-4 h-4"
-                >
-                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                  <path d="M6 10h4m-4 4h4m4-4h4"></path>
-                </svg>
-                DNI *
-              </label>
 
-              <input
-                v-model="formValues.dni"
-                id="dni"
-                type="number"
-                placeholder="Ingresa tu DNI"
-                required
-                @focus="scrollToVisible"
-                class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
-              />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-2">
               <label
                 for="email"
@@ -293,6 +395,9 @@ const scrollToVisible = (event: FocusEvent) => {
                 class="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 opacity-70 cursor-not-allowed"
               />
             </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-2">
               <label
                 for="telephone"
@@ -324,9 +429,7 @@ const scrollToVisible = (event: FocusEvent) => {
                 class="w-full px-2 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:ring-primary focus:border-primary transition"
               />
             </div>
-          </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div class="space-y-2">
               <label
                 for="numTicket"
@@ -539,7 +642,7 @@ const scrollToVisible = (event: FocusEvent) => {
     <div
       v-if="isModalOpen"
       @click="isModalOpen = false"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm"
+      class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
     >
       <div
         @click.stop
