@@ -179,7 +179,7 @@ const scheduleData: { [key: string]: ScheduleEvent[] } = {
     {
       time: "10:00 - 11:10",
       type: "ponencia",
-      title: "Como crear tu propio video juego",
+      title: "Cosas que debes considerar antes de egresar",
       description: "",
       speaker: {
         name: "ING. ARELIS ALEJANDRA REYES GUERRA",
