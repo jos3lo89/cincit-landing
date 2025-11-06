@@ -17,37 +17,36 @@ const sponsors = [
     logo: "/sponsor/PRINTCOLOR.webp",
     url: "https://www.facebook.com/profile.php?id=61580221235958",
   },
-
   {
     name: "SETELNETV",
     logo: "/sponsor/stelnetv.webp",
     url: "https://www.facebook.com/profile.php?id=61577831677640",
   },
-
   {
     name: "arios",
     logo: "/sponsor/ARIOS.webp",
     url: "https://www.facebook.com/profile.php?id=100047643619630&_rdc=1&_rdr#",
   },
-
   {
     name: "capci",
     logo: "/sponsor/capci.webp",
     url: "https://www.facebook.com/capciinstitutodeformaciontecnica",
   },
-
   {
     name: "WASIMIEL",
     logo: "/sponsor/WASIMIEL.webp",
     url: "https://www.facebook.com/p/Wasi-Miel-Andahuaylas-100054581928707/",
   },
-
   {
     name: "NAYRO",
     logo: "/sponsor/NAYRO.webp",
     url: "https://www.facebook.com/guizadoexpress",
   },
 ];
+
+const splitIndex = Math.ceil(sponsors.length / 2);
+const sponsorsRow1 = sponsors.slice(0, splitIndex);
+const sponsorsRow2 = sponsors.slice(splitIndex);
 ---
 
 <Container>
@@ -57,10 +56,11 @@ const sponsors = [
       <span class="text-gradient">auspiciadores</span>
     </h2>
   </div>
-  <div class="slider-container mb-10">
+
+  <div class="slider-container mb-4">
     <div class="slider-track">
       {
-        sponsors.map((sponsor) => (
+        sponsorsRow1.map((sponsor) => (
           <a
             href={sponsor.url}
             target="_blank"
@@ -72,7 +72,36 @@ const sponsors = [
         ))
       }
       {
-        sponsors.map((sponsor) => (
+        sponsorsRow1.map((sponsor) => (
+          <a
+            href={sponsor.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sponsor-item"
+          >
+            <img src={sponsor.logo} alt={sponsor.name} loading="lazy" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="slider-container mb-10">
+    <div class="slider-track-reverse">
+      {
+        sponsorsRow2.map((sponsor) => (
+          <a
+            href={sponsor.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sponsor-item"
+          >
+            <img src={sponsor.logo} alt={sponsor.name} loading="lazy" />
+          </a>
+        ))
+      }
+      {
+        sponsorsRow2.map((sponsor) => (
           <a
             href={sponsor.url}
             target="_blank"
@@ -105,16 +134,6 @@ const sponsors = [
     pointer-events: none;
   }
 
-  /* .slider-container::before {
-    left: 0;
-    background: linear-gradient(to right, #1966b3, transparent);
-  }
-
-  .slider-container::after {
-    right: 0;
-    background: linear-gradient(to left, #1c70c4, transparent);
-  } */
-
   .slider-track {
     display: flex;
     gap: 4rem;
@@ -123,6 +142,17 @@ const sponsors = [
   }
 
   .slider-track:hover {
+    animation-play-state: paused;
+  }
+
+  .slider-track-reverse {
+    display: flex;
+    gap: 4rem;
+    animation: scroll-reverse 40s linear infinite;
+    width: fit-content;
+  }
+
+  .slider-track-reverse:hover {
     animation-play-state: paused;
   }
 
@@ -160,8 +190,22 @@ const sponsors = [
     }
   }
 
+  @keyframes scroll-reverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
   @media (max-width: 768px) {
     .slider-track {
+      gap: 2rem;
+      animation-duration: 30s;
+    }
+
+    .slider-track-reverse {
       gap: 2rem;
       animation-duration: 30s;
     }
