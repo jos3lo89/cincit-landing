@@ -186,6 +186,15 @@ watch(
     formValues.value.dni = newValue.replace(/\D/g, "").slice(0, 8);
   }
 );
+
+watch(
+  () => formValues.value.dni,
+  async (dni) => {
+    if (dni.length === 8) {
+      await handleFetchUser();
+    }
+  }
+);
 </script>
 
 <template>
