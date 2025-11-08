@@ -42,6 +42,21 @@ const sponsors = [
     logo: "/sponsor/NAYRO.webp",
     url: "https://www.facebook.com/guizadoexpress",
   },
+  {
+    name: "WALLE",
+    logo: "/sponsor/walle.webp",
+    url: "https://www.facebook.com/Onestoreandahuaylas?locale=es_LA",
+  },
+  {
+    name: "Lancenter",
+    logo: "/sponsor/lancenter.webp",
+    url: "#",
+  },
+  {
+    name: "municipalidad-de-talvera",
+    logo: "/sponsor/munitalavera.webp",
+    url: "https://www.munitalavera.gob.pe/",
+  },
 ];
 
 const splitIndex = Math.ceil(sponsors.length / 2);
@@ -57,7 +72,7 @@ const sponsorsRow2 = sponsors.slice(splitIndex);
     </h2>
   </div>
 
-  <div class="slider-container mb-4">
+  <div class="slider-container mb-2">
     <div class="slider-track">
       {
         sponsorsRow1.map((sponsor) => (
@@ -119,7 +134,7 @@ const sponsorsRow2 = sponsors.slice(splitIndex);
   .slider-container {
     width: 100%;
     overflow: hidden;
-    padding: 2rem 0;
+    padding: 0.1rem 0;
     position: relative;
   }
 
