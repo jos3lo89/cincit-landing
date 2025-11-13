@@ -1,7 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import RegistrationForm from "@/components/forms/RegistrationForm.vue";
-import AbortRegistration from "@/components/forms/AbortRegistration.astro";
 import Container from "@/components/ui/Container.astro";
 
 const email = Astro.locals.email as string | undefined;
@@ -107,9 +105,9 @@ if (!email) {
       </div>
     </div>
 
-    <RegistrationForm email={email} client:load />
+    <!-- <RegistrationForm email={email} client:load /> -->
 
-    <AbortRegistration />
+    <!-- <AbortRegistration /> -->
   </Container>
 </Layout>
 
