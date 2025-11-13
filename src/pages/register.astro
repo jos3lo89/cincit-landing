@@ -1,15 +1,14 @@
 ---
 import Container from "@/components/ui/Container.astro";
-import VerificationForm from "@/components/forms/VerificationForm.vue";
 import Layout from "@/layouts/Layout.astro";
 import Inscription from "@/components/Inscription.astro";
 ---
 
 <Layout title="Inscripciones | CINCIT 2025">
   <Container>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-1 gap-3 lg:gap-6">
       <Inscription />
-      <VerificationForm client:idle />
+      <!-- <VerificationForm client:idle /> -->
     </div>
   </Container>
 </Layout>
